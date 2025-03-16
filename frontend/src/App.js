@@ -7,6 +7,9 @@ import Font, { Text } from 'react-font';
 import './App.css';
 import './css/vertical-nav.css';
 import AppointmentBooking from './screens/appointment';
+import AstrologyForm from './app/Booking/page';
+import Blog from './app/Blogs/page';
+import ContactUs from './app/ContactUs/page';
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -29,10 +32,10 @@ function App() {
               <Link to="/"><Text family='Garamond'>Home</Text></Link>
             </li>
             <li>
-              <Link to="/booking"><Text family='Garamond'>Booking</Text></Link>
+              <Link to="/book"><Text family='Garamond'>Booking</Text></Link>
             </li>
             <li>
-              <Link to="/category"><Text family='Garamond'>Category</Text></Link>
+              <Link to="/blog"><Text family='Garamond'>Blog</Text></Link>
             </li>
             <li>
               <Link to="/contact"><Text family='Garamond'>Contact</Text></Link>
@@ -51,6 +54,9 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/appoitment" element={<AppointmentBooking />} />
+            <Route path="/book" element={<AstrologyForm />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<ContactUs/>} />
           </Routes>
         </div>
       </div>
