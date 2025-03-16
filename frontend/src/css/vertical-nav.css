@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+   
+    font-family: Arial, sans-serif;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+}
+
+.horizontal-nav {
+    background-color: #ffffff;
+    padding: 40px;
+    position: sticky; /* Add this line */
+    top: 0; /* Add this line to make it stick to the top */
+    border-end-end-radius: 50px;
+    border-bottom-left-radius: 50px;
+    align-content: center;
+}
+
+.horizontal-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    font-family: '';
+
+}
+
+.horizontal-nav ul li {
+    margin: 0 15px;
+}
+
+.horizontal-nav ul li a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 18px;
+    
+}
+
+.horizontal-nav ul li a:hover {
+    color: #61dafb;
+}
+
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    body {
+        margin-right: 50px;
+        margin-left: 50px;
+    }
+
+    .horizontal-nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .horizontal-nav ul li {
+        margin: 10px 0;
+    }
+}
