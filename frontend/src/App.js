@@ -1,28 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from './screens/home';
 import About from './screens/about';
 import Contact from './screens/contact';
+import Font, { Text } from 'react-font';
 import './App.css';
 import './css/vertical-nav.css';
 import AppointmentBooking from './screens/appointment';
 
 function App() {
+  const [time, setTime] = useState(new Date());
+
+  // Update the clock every second
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <Router>
       <div className="app">
         <nav className="horizontal-nav">
-          <ul>
+          <ul className="nav-menu">
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/"><Text family='Garamond'>Home</Text></Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/booking"><Text family='Garamond'>Booking</Text></Link>
             </li>
             <li>
-              <Link to="/contact">Contact</Link>
+              <Link to="/category"><Text family='Garamond'>Category</Text></Link>
+            </li>
+            <li>
+              <Link to="/contact"><Text family='Garamond'>Contact</Text></Link>
+            </li>
+            <li>
+              <Link to="/about"><Text family='Garamond'>About</Text></Link>
             </li>
           </ul>
+          <div className='clock'>
+            <h2>{time.toLocaleTimeString()}</h2>
+          </div>
         </nav>
         <div className="content">
           <Routes>
@@ -36,6 +57,5 @@ function App() {
     </Router>
   );
 }
-
 
 export default App;
