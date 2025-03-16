@@ -10,6 +10,7 @@ import AppointmentBooking from './screens/appointment';
 import AstrologyForm from './app/Booking/page';
 import Blog from './app/Blogs/page';
 import ContactUs from './app/ContactUs/page';
+import Footer from './components/Footer/page'; // Import the footer component
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -48,17 +49,20 @@ function App() {
             <h2>{time.toLocaleTimeString()}</h2>
           </div>
         </nav>
+
         <div className="content">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/appoitment" element={<AppointmentBooking />} />
+            <Route path="/appointment" element={<AppointmentBooking />} />
             <Route path="/book" element={<AstrologyForm />} />
             <Route path="/blog" element={<Blog />} />
-            <Route path="/contact" element={<ContactUs/>} />
+            <Route path="/contact" element={<ContactUs />} />
           </Routes>
         </div>
+
+        {/* Footer Section */}
+        <Footer /> {/* Add the footer here */}
       </div>
     </Router>
   );
