@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from './screens/home';
-import About from './screens/about';
+import About from './app/AboutUS/page';
 import Contact from './screens/contact';
 import Font, { Text } from 'react-font';
 import './App.css';
@@ -10,7 +10,7 @@ import AppointmentBooking from './screens/appointment';
 import AstrologyForm from './app/Booking/page';
 import Blog from './app/Blogs/page';
 import ContactUs from './app/ContactUs/page';
-import Footer from './components/Footer/page'; // Import the footer component
+import Footer from './components/Footer/page';
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -50,6 +50,7 @@ function App() {
           </div>
         </nav>
 
+        {/* Main Content with Routes */}
         <div className="content">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -61,8 +62,8 @@ function App() {
           </Routes>
         </div>
 
-        {/* Footer Section */}
-        <Footer /> {/* Add the footer here */}
+        {/* Ensure Footer is outside of Routes */}
+        <Footer />
       </div>
     </Router>
   );

@@ -1,69 +1,171 @@
+/* home.css */
+
+/* General Styles */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    position: relative; /* Ensure body is a positioning context */
-    overflow: hidden; /* Prevent scrolling if the background is blurred */
-}
-
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../assets/back12.jpg');
-    background-size: cover;
-    background-position: center;
-    filter: blur(9px); /* Adjust the blur value as needed */
-    z-index: -1;
-}
-
-.container {
-    position: relative; /* Make container a positioning context */
-    width: 100%;
-    height: 100vh; /* Full viewport height */
-    overflow: hidden; /* Hide overflow if images move outside */
-}
-
-.container .img1 {
-    position: absolute; /* Position absolutely within the container */
-    top: 10%; /* Adjust top position */
-    left: 30%; /* Center horizontally */
-    transform: translateX(-50%); /* Adjust for exact centering */
-    z-index: 1; /* Ensure it's above the background */
-}
-
-.container .img2 {
-    position: absolute; /* Position absolutely within the container */
-    top: 27%; /* Adjust top position */
-    left: 32%; /* Adjust left position */
-    z-index: 1; /* Ensure it's above the background */
-    background-color: rgb(9, 9, 5);
-    padding: 10px;
-}
-/* Left content (Images) */
-.left-content {
-    flex: 1;
-}
-
-/* Right content (Clock & Calendar) */
-.right-content {
-    flex: 1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Container for the entire page */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Header Section */
+  header {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: rgb(31, 27, 51);
+    border-bottom: 4px solid #2575fc;
+  }
+  
+  header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  header p {
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
+  
+  /* Main Content Section */
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  /* Left Side (Images) */
+  .left-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-}
-
-/* Clock Styling */
-
-
-/* Calendar Styling */
-.calendar {
-    position: absolute;
-    right: 5%;
-    top: 5%;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    
-}
+  }
+  
+  .left-content img {
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .left-content img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Framed Image */
+  .framed-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .framed-image {
+    width: 300px;
+    height: 300px;
+    border: 8px solid #03033B;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transform: rotate(2deg);
+    transition: transform 0.5s ease;
+  }
+  
+  .framed-image:hover {
+    transform: rotate(0);
+  }
+  
+  .framed-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Right Side (Notice Board) */
+  .right-content {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .right-content h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2575fc;
+    margin-bottom: 20px;
+  }
+  
+  /* Notice Items */
+  .notice-item {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #e0e0e0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .notice-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .notice-item h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2575fc;
+    margin-bottom: 10px;
+  }
+  
+  .notice-item p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  .notice-item .date {
+    font-size: 0.8rem;
+    color: #888;
+  }
+  
+  /* Footer Section */
+  footer {
+    text-align: center;
+    padding: 20px;
+    background: #05132a;
+    color: rgb(32, 30, 46);
+    margin-top: auto;
+    border-top: 4px solid #6a11cb;
+  }
+  
+  footer p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .main-content {
+      flex-direction: column;
+    }
+  
+    .left-content, .right-content {
+      width: 100%;
+    }
+  
+    .framed-image {
+      width: 250px;
+      height: 250px;
+    }
+  }

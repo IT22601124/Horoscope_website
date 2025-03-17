@@ -1,8 +1,21 @@
+import React, { useState } from 'react';
 import Input from '../../components/ui/input';
 import Button from '../../components/ui/button';
-import Calendar from '../../components/ui/calendar';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css'; // Import the CSS for the calendar
 
 export default function AstrologyForm() {
+  const [date, setDate] = useState(new Date()); // State to handle the selected date
+
+  const eventDates = [
+    { event: "Consultation", date: new Date(2023, 2, 20) }, // Mar 20
+    { event: "Full Moon Reading", date: new Date(2023, 2, 25) }, // Mar 25
+    { event: "Astrology Class", date: new Date(2023, 2, 28) }, // Mar 28
+  ];
+
+  // Sort the eventDates in ascending order by the event date
+  eventDates.sort((a, b) => a.date - b.date);
+
   return (
     <div
       className="min-h-screen bg-gradient-to-br from-yellow-600/90 via-yellow-500/80 to-yellow-600/90 bg-fixed bg-blend-overlay bg-cover"
@@ -12,7 +25,7 @@ export default function AstrologyForm() {
     >
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <h1 className="text-center text-3xl mb-8 text-black font-bold">ඔබට මෙලාට පෙන්කරරුන්න!</h1>
+        <h1 className="text-center text-4xl mb-8 text-black font-bold">ඔබගේ වෙලාව වෙන්කරවා ගන්න.</h1>
 
         {/* Two-column layout for form and calendar */}
         <div className="flex flex-col lg:flex-row gap-6">
@@ -73,39 +86,34 @@ export default function AstrologyForm() {
             </form>
           </div>
 
-          {/* Calendar Card */}
+          {/* New Calendar Card */}
           <div className="bg-[#03033B] bg-opacity-95 rounded-3xl p-6 shadow-2xl lg:w-1/4">
             <h2 className="text-white text-xl font-semibold mb-4 text-center">Calendar</h2>
-            <div className="flex justify-center">
+            
+            <div className="flex justify-center mb-6">
               <Calendar
-                className="bg-navy-900 text-white rounded-lg"
-                classNames={{
-                  day_selected: "bg-yellow-400 text-navy-900 hover:bg-yellow-500 hover:text-navy-900",
-                  day_today: "bg-white/20 text-white",
-                  day: "text-white hover:bg-white/20",
-                  head_cell: "text-yellow-400",
-                  nav_button: "text-white hover:bg-white/20",
-                  nav_button_previous: "text-white",
-                  nav_button_next: "text-white",
-                  caption: "text-white",
+                onChange={setDate} // Updates the selected date
+                value={date}
+                tileClassName={({ date, view }) => {
+                  // Highlight event dates
+                  const eventDate = eventDates.find(
+                    (event) => event.date.toDateString() === date.toDateString()
+                  );
+                  return eventDate ? 'bg-yellow-400 text-navy-900' : '';
                 }}
               />
             </div>
+
+            {/* Upcoming Events Section */}
             <div className="mt-6 p-4 bg-white/10 rounded-lg">
               <h3 className="text-yellow-400 font-medium mb-2">Upcoming Events</h3>
               <ul className="space-y-2 text-white">
-                <li className="flex justify-between">
-                  <span>Consultation</span>
-                  <span>Mar 20</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Full Moon Reading</span>
-                  <span>Mar 25</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Astrology Class</span>
-                  <span>Mar 28</span>
-                </li>
+                {eventDates.map((event, index) => (
+                  <li key={index} className="flex justify-between">
+                    <span>{event.event}</span>
+                    <span>{event.date.toLocaleDateString()}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
