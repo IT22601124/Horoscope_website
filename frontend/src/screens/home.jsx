@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../css/home.css';
-import j1 from '../assets/j1.png';
+import logo from '../assets/logo.png'; // Adjust the path as needed
 import j2 from '../assets/j3.png';
 
 function Home() {
@@ -63,7 +63,7 @@ function Home() {
       <div className='relative z-10 container mx-auto flex flex-col gap-8 p-8'>
         {/* Images at the top */}
         <div className="flex flex-col items-center gap-4 mb-0">
-          <img src={j1} alt='doctor' className='rounded-lg  w-56 h-auto' />
+          <img src={logo} alt='doctor' className='rounded-lg  w-56 h-auto' />
           <img src={j2} alt='doctor' className='rounded-lg  w-48 h-auto' />
         </div>
 

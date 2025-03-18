@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Clock, Star, ArrowRight } from "lucide-react";
+import { Clock, ArrowRight } from "lucide-react";
 
 export default function Blog() {
   const [isHovered, setIsHovered] = useState(null);
@@ -10,24 +10,57 @@ export default function Blog() {
   const cards = [
     {
       id: 1,
-      title: "Cosmic Timepiece",
+      title: "ජනාධිපතිතුමාට රට කරන්න පුලුවන්ද?",
       description:
-        "Discover the secrets of celestial mechanics with our premium astrological timepieces.",
+        "ජනාධිපතිතුමාට රට කරන්න පුලුවන්ද ? බැරිද ? ඉදිරි දින වල කුමක් වෙයිද?රනිල් ජනාධිපති වන බන කිව්ව මෑණියෝ.",
       icon: <Clock className="h-4 w-4" />,
+      image: "/images/im1.png",
+      youtubeLink: "https://youtu.be/tWNDejQ4A00?si=jOJf2F8yIIdHWH5c",
     },
     {
       id: 2,
-      title: "Astral Navigation",
+      title: "තව දින ගණනකින් රට බේරගන්න එන ප්‍රභල නායකයා මෙන්න.",
       description:
-        "Let the stars guide your journey through life with our expert astrological readings.",
-        icon: <Clock className="h-4 w-4" />,
+        "තව දින ගණනකින් රට බේරගන්න එන ප්‍රභල නායකයා මෙන්න|අප්‍රේල් වලින් පස්සේ භයානක ව්‍යසනයක්|ග්‍රහමාරු නිසා.",
+      icon: <Clock className="h-4 w-4" />,
+      image: "/images/im2.png",
+      youtubeLink: "https://youtu.be/OU8maXvzdtc?si=af7NKbVTyLF6HOrz",
     },
     {
       id: 3,
-      title: "Zodiac Mastery",
+      title: "ශලනි,උමාරා,ජනාධිපතිතුමා ගැන!",
       description:
-        "Unlock your full potential by understanding the cosmic forces that shape your destiny.",
+        "ශලනි,උමාරා,ජනාධිපතිතුමා ගැන හරියටම අනාවැකි කිව්ව ඈ රටේ මීළඟට වෙන සියල්ල ගැන කියයි|රාහු මාරුවේ පලාපල.",
       icon: <Clock className="h-4 w-4" />,
+      image: "/images/im3.png",
+      youtubeLink: "https://youtu.be/z3hh0-lK2h4?si=tnqxmpxhWOUr_Zkk",
+    },
+    {
+      id: 4,
+      title: "New Card 4",
+      description:
+        "Explore the mysteries of the universe with our advanced astrological tools.",
+      icon: <Clock className="h-4 w-4" />,
+      image: "/images/im4.png",
+      youtubeLink: "https://youtu.be/yywfqd4A62U?si=zra_-40RZMgR8FA3",
+    },
+    {
+      id: 5,
+      title: "New Card 5",
+      description:
+        "Dive deeper into the cosmos with our exclusive astrological insights.",
+      icon: <Clock className="h-4 w-4" />,
+      image: "/images/im5.png",
+      youtubeLink: "", // Add a YouTube link later
+    },
+    {
+      id: 6,
+      title: "New Card 6",
+      description:
+        "Experience the power of the stars with our personalized astrological readings.",
+      icon: <Clock className="h-4 w-4" />,
+      image: "/images/im6.png", // Add an image later
+      youtubeLink: "", // Add a YouTube link later
     },
   ];
 
@@ -41,13 +74,13 @@ export default function Blog() {
   }, [cards.length]);
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-amber-50 to-white py-12">
+    <main className="min-h-screen bg-white py-12">
       <div className="w-full max-w-6xl mx-auto p-6">
         {/* Advertisement Banner */}
         <div className="relative mb-10">
           <div className="bg-gradient-to-r from-amber-100 to-amber-300 rounded-full py-6 text-center shadow-md">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-800">
-              Advertisement
+              New Vidoes
             </h2>
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2">
               <div className="w-20 h-1 bg-amber-500 rounded-full"></div>
@@ -70,7 +103,7 @@ export default function Blog() {
         </div>
 
         {/* Cards Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {cards.map((card, index) => (
             <div
               key={card.id}
@@ -89,13 +122,18 @@ export default function Blog() {
               >
                 <div className="relative h-64 overflow-hidden group">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-6">
-                    <button className="bg-white/90 hover:bg-white border border-gray-200 rounded-md px-4 py-2 flex items-center text-sm font-medium text-gray-800 hover:text-amber-700 transition-all">
-                      View Details <ArrowRight className="ml-2 h-4 w-4" />
-                    </button>
+                    <a
+                      href={card.youtubeLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-white/90 hover:bg-white border border-gray-200 rounded-md px-4 py-2 flex items-center text-sm font-medium text-gray-800 hover:text-amber-700 transition-all"
+                    >
+                      Watch Video <ArrowRight className="ml-2 h-4 w-4" />
+                    </a>
                   </div>
                   <img
-                    src="/placeholder.svg"
-                    alt="Golden clock"
+                    src={card.image}
+                    alt={card.title}
                     className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute top-4 right-4 bg-amber-500 text-white p-2 rounded-full z-20 shadow-sm">
@@ -114,12 +152,16 @@ export default function Blog() {
                   </p>
                   <div className="flex justify-between items-center">
                     <span className="text-xs text-gray-500 font-medium">
-                      
+                      {/* Add additional info here if needed */}
                     </span>
-                    <button className="text-amber-700 hover:text-amber-900 text-sm font-medium flex items-center">
-                    
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </button>
+                    <a
+                      href={card.youtubeLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-amber-700 hover:text-amber-900 text-sm font-medium flex items-center"
+                    >
+                   
+                    </a>
                   </div>
                 </div>
               </div>
@@ -127,6 +169,28 @@ export default function Blog() {
           ))}
         </div>
       </div>
+
+      {/* Add custom CSS for animations */}
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .card-animation {
+          animation: fadeInUp 0.5s ease-out;
+        }
+
+        .grid {
+          row-gap: 6rem; /* Increase row gap */
+        }
+      `}</style>
     </main>
   );
 }
