@@ -11,6 +11,7 @@ import AstrologyForm from './app/Booking/page';
 import Blog from './app/Blogs/page';
 import ContactUs from './app/ContactUs/page';
 import Footer from './components/Footer/page';
+import Category from './app/Category/page';
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -56,9 +57,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/appointment" element={<AppointmentBooking />} />
-            <Route path="/book" element={<AstrologyForm />} />
+            <Route path="/book" element={<Category />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<ContactUs />} />
+            <Route path="/booking" element={<AstrologyForm />} />
           </Routes>
         </div>
 

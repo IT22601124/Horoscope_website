@@ -62,7 +62,7 @@ function Home() {
       {/* Main Content */}
       <div className='relative z-10 container mx-auto flex flex-col gap-8 p-8'>
         {/* Images at the top */}
-        <div className="rounded-lg border-2 border-white overflow-hidden"> {/* Added rounded corners and white border */}
+        <div className="rounded-lg border-2 border-white overflow-hidden shadow-lg"> {/* Added rounded corners and white border */}
           <img
             src="/images/logoo.png" // Replace with your logo path
             alt="Dinetha Astrological Logo"
@@ -71,16 +71,16 @@ function Home() {
         </div>
 
         {/* Flex container for the remaining content */}
-        <div className='flex flex-col lg:flex-row gap-48'>
+        <div className='flex flex-col lg:flex-row gap-8 w-full'>
           {/* Left Side (Framed Image) */}
-          <div className="flex justify-center items-center lg:justify-start lg:items-start">
-            <div className="w-[500px] h-[400px] border-8 border-[#03033B] shadow-2xl rounded-lg overflow-hidden transform rotate-2 hover:rotate-0 transition-transform duration-500">
+          <div className="flex justify-center items-center lg:w-1/2">
+            <div className="w-full h-[500px] border-8 border-[#03033B] shadow-2xl rounded-lg overflow-hidden">
               <img src="/images/123.png" alt="Framed" className="w-full h-full object-cover" />
             </div>
           </div>
 
           {/* Right Side (Notice Board) */}
-          <div className='flex-1 p-6 rounded-lg shadow-lg' style={{ backgroundColor: '#03033B', maxWidth: '500px' }}>
+          <div className='flex-1 p-6 rounded-lg shadow-lg lg:w-1/2' style={{ backgroundColor: '#03033B' }}>
             <h2 className="text-3xl font-bold text-white mb-5">Notice Board</h2>
             <Notice />
           </div>
