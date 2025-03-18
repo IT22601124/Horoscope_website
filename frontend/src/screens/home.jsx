@@ -62,9 +62,12 @@ function Home() {
       {/* Main Content */}
       <div className='relative z-10 container mx-auto flex flex-col gap-8 p-8'>
         {/* Images at the top */}
-        <div className="flex flex-col items-center gap-4 mb-0">
-          <img src={logo} alt='doctor' className='rounded-lg  w-56 h-auto' />
-          <img src={j2} alt='doctor' className='rounded-lg  w-48 h-auto' />
+        <div className="rounded-lg border-2 border-white overflow-hidden"> {/* Added rounded corners and white border */}
+          <img
+            src="/images/logoo.png" // Replace with your logo path
+            alt="Dinetha Astrological Logo"
+            className="h-28 w-70 object-cover" // Ensure the image fits well
+          />
         </div>
 
         {/* Flex container for the remaining content */}
