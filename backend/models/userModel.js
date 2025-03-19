@@ -2,12 +2,15 @@ const db = require('../config/firebase');
 
 class User {
   // Add a new user
-  static async addUser(name, birthday, birthTime, phoneNumber) {
+  static async addUser(name, birthday, birthTime, birthPlace, phoneNumber, email, description) {
     const userRef = await db.collection('users').add({
       name,
       birthday,
       birthTime,
+      birthPlace,
       phoneNumber,
+      email,
+      description,
       createdAt: new Date().toISOString(),
     });
     return userRef.id;
@@ -24,12 +27,15 @@ class User {
   }
 
   // Update user data
-  static async updateUser(id, name, birthday, birthTime, phoneNumber) {
+  static async updateUser(id, name, birthday, birthTime, birthPlace, phoneNumber, email, description) {
     await db.collection('users').doc(id).update({
       name,
       birthday,
       birthTime,
+      birthPlace,
       phoneNumber,
+      email,
+      description,
       updatedAt: new Date().toISOString(),
     });
   }
