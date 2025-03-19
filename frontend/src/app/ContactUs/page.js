@@ -1,11 +1,10 @@
 import React from "react";
-import { Mail, Phone, MessageCircle } from "lucide-react"; // Icon library
+import { Mail, Phone, MessageCircle, MapPin } from "lucide-react"; // Added MapPin icon
 
 const ContactUs = () => {
   return (
-    <div 
+    <div
       className="flex flex-col md:flex-row items-center justify-center min-h-screen p-8 bg-cover bg-center bg-opacity-30"
-      style={{ backgroundImage: "url('/images/img7.png')" }} // Update with your image path
     >
       {/* Contact Info Section */}
       <div className="bg-[#F7E0A3] p-8 rounded-2xl shadow-2xl w-full md:w-1/2 max-w-md">
@@ -16,27 +15,40 @@ const ContactUs = () => {
           <div className="flex items-center justify-between p-4 bg-[#F3D480] rounded-xl hover:bg-[#E5C97A] transition-colors duration-300">
             <div>
               <p className="text-[#333] font-semibold text-lg">Email</p>
-              <p className="text-[#222] font-bold text-xl">dinethaastrological@gmail.com</p>
+              <p className="text-[#222] font-bold text-1xl">dinethaastrological@gmail.com</p>
             </div>
-            <Mail className="text-[#0056b3] w-10 h-10" />
+            <Mail className="text-[#0056b3] w-8 h-8" />
           </div>
 
           {/* Contact */}
           <div className="flex items-center justify-between p-4 bg-[#F3D480] rounded-xl hover:bg-[#E5C97A] transition-colors duration-300">
             <div>
               <p className="text-[#333] font-semibold text-lg">Contact</p>
-              <p className="text-[#222] font-bold text-xl">077-2279389</p>
+              <p className="text-[#222] font-bold text-1xl">077-2279389</p>
             </div>
-            <Phone className="text-[#0088cc] w-10 h-10" />
+            <Phone className="text-[#0088cc] w-8 h-8" />
           </div>
 
           {/* WhatsApp */}
           <div className="flex items-center justify-between p-4 bg-[#F3D480] rounded-xl hover:bg-[#E5C97A] transition-colors duration-300">
             <div>
               <p className="text-[#333] font-semibold text-lg">WhatsApp</p>
-              <p className="text-[#222] font-bold text-xl">077-2279389</p>
+              <p className="text-[#222] font-bold text-1xl">077-2279389</p>
             </div>
-            <MessageCircle className="text-[#25D366] w-10 h-10" />
+            <MessageCircle className="text-[#25D366] w-8 h-8" />
+          </div>
+
+          {/* Address */}
+          <div className="flex items-center justify-between p-4 bg-[#F3D480] rounded-xl hover:bg-[#E5C97A] transition-colors duration-300">
+            <div>
+              <p className="text-[#333] font-semibold text-lg">Address</p>
+              <p className="text-[#222] font-bold text-1xl">
+                Dinetha Astrological Institute
+                <br />
+                12/53, Town Council Road, Elpitiya
+              </p>
+            </div>
+            <MapPin className="text-[#FF0000] w-8 h-8" /> {/* Red color for address icon */}
           </div>
         </div>
       </div>

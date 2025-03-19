@@ -17,105 +17,119 @@ export default function AstrologyForm() {
   eventDates.sort((a, b) => a.date - b.date);
 
   return (
-    <div
-      className="min-h-screen bg-gradient-to-br from-yellow-600/90 via-yellow-500/80 to-yellow-600/90 bg-fixed bg-blend-overlay bg-cover"
-      style={{
-        backgroundImage: "url('/images/img9.png')", // Add your specific image src path here
-      }}
-    >
+    <div className="min-h-screen bg-white">
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <h1 className="text-center text-4xl mb-8 text-black font-bold">ඔබගේ වෙලාව වෙන්කරවා ගන්න.</h1>
+      <div className="relative mb-6 max-w-6xl mx-auto">
+        <div className="bg-gradient-to-r from-amber-100 to-amber-300 rounded-full py-4 text-center shadow-md">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-gray-800">
+            ඔබගේ වෙලාව වෙන්කරවා ගන්න
+          </h2>
+          <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2">
+            <div className="w-16 h-1 bg-amber-500 rounded-full"></div>
+          </div>
+        </div>
+      </div>
 
-        {/* Two-column layout for form and calendar */}
-        <div className="flex flex-col lg:flex-row gap-6">
-          {/* Form Card */}
-          <div className="bg-[#03033B] bg-opacity-95 rounded-3xl p-8 shadow-2xl lg:w-3/4">
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-white mb-2">නම</label>
-                  <Input className="w-full bg-white/10 border-white/20 text-white" placeholder="ඔබේ නම" />
-                </div>
-                <div>
-                  <label className="block text-white mb-2">උපන් දිනය</label>
-                  <Input className="w-full bg-white/10 border-white/20 text-white" type="date" />
-                </div>
-                <div>
-                  <label className="block text-white mb-2">උපන් වේලාව</label>
-                  <Input className="w-full bg-white/10 border-white/20 text-white" type="time" />
-                </div>
+      {/* Two-column layout for form and calendar */}
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 max-w-6xl mx-auto">
+        {/* Form Card */}
+        <div className="bg-[#F7E0A3] rounded-3xl p-6 shadow-2xl lg:w-3/4">
+          <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-4">
+              <div>
+                <label className="block text-gray-800 mb-2">නම</label>
+                <Input className="w-full bg-white border-gray-300 text-gray-800" placeholder="ඔබේ නම" />
               </div>
-
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-white mb-2">උපන් ස්ථානය</label>
-                  <Input className="w-full bg-white/10 border-white/20 text-white" placeholder="උපන් ස්ථානය" />
-                </div>
-                <div>
-                  <label className="block text-white mb-2">දුරකථන අංකය</label>
-                  <Input
-                    className="w-full bg-white/10 border-white/20 text-white"
-                    type="tel"
-                    placeholder="දුරකථන අංකය"
-                  />
-                </div>
-                <div>
-                  <label className="block text-white mb-2">විද්‍යුත් තැපෑල</label>
-                  <Input
-                    className="w-full bg-white/10 border-white/20 text-white"
-                    type="email"
-                    placeholder="විද්‍යුත් තැපෑල"
-                  />
-                </div>
+              <div>
+                <label className="block text-gray-800 mb-2">උපන් දිනය</label>
+                <Input className="w-full bg-white border-gray-300 text-gray-800" type="date" />
               </div>
+              <div>
+                <label className="block text-gray-800 mb-2">උපන් වේලාව</label>
+                <Input className="w-full bg-white border-gray-300 text-gray-800" type="time" />
+              </div>
+            </div>
 
-              <div className="md:col-span-2">
-                <label className="block text-white mb-2">විස්තර</label>
-                <textarea
-                  className="w-full bg-white/10 border-white/20 text-white rounded-md h-24 p-2"
-                  placeholder="අමතර විස්තර"
+            <div className="space-y-4">
+              <div>
+                <label className="block text-gray-800 mb-2">උපන් ස්ථානය</label>
+                <Input className="w-full bg-white border-gray-300 text-gray-800" placeholder="උපන් ස්ථානය" />
+              </div>
+              <div>
+                <label className="block text-gray-800 mb-2">දුරකථන අංකය</label>
+                <Input
+                  className="w-full bg-white border-gray-300 text-gray-800"
+                  type="tel"
+                  placeholder="දුරකථන අංකය"
                 />
               </div>
-
-              <div className="md:col-span-2 flex justify-center">
-                <Button className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-8 py-2 rounded-full">
-                  Book
-                </Button>
+              <div>
+                <label className="block text-gray-800 mb-2">විද්‍යුත් තැපෑල</label>
+                <Input
+                  className="w-full bg-white border-gray-300 text-gray-800"
+                  type="email"
+                  placeholder="විද්‍යුත් තැපෑල"
+                />
               </div>
-            </form>
-          </div>
+            </div>
 
-          {/* New Calendar Card */}
-          <div className="bg-[#03033B] bg-opacity-95 rounded-3xl p-6 shadow-2xl lg:w-1/4">
-            <h2 className="text-white text-xl font-semibold mb-4 text-center">Calendar</h2>
-            
-            <div className="flex justify-center mb-6">
-              <Calendar
-                onChange={setDate} // Updates the selected date
-                value={date}
-                tileClassName={({ date, view }) => {
-                  // Highlight event dates
-                  const eventDate = eventDates.find(
-                    (event) => event.date.toDateString() === date.toDateString()
-                  );
-                  return eventDate ? 'bg-yellow-400 text-navy-900' : '';
-                }}
+            {/* Address Section - Only ලිපිනය and රට */}
+            <div className="md:col-span-2 space-y-4">
+              <div>
+                <label className="block text-gray-800 mb-2">ලිපිනය</label>
+                <Input className="w-full bg-white border-gray-300 text-gray-800" placeholder="ලිපිනය" />
+              </div>
+              <div>
+                <label className="block text-gray-800 mb-2">රට</label>
+                <Input className="w-full bg-white border-gray-300 text-gray-800" placeholder="රට" />
+              </div>
+            </div>
+
+            <div className="md:col-span-2">
+              <label className="block text-gray-800 mb-2">විස්තර</label>
+              <textarea
+                className="w-full bg-white border-gray-300 text-gray-800 rounded-md h-24 p-2"
+                placeholder="අමතර විස්තර"
               />
             </div>
 
-            {/* Upcoming Events Section */}
-            <div className="mt-6 p-4 bg-white/10 rounded-lg">
-              <h3 className="text-yellow-400 font-medium mb-2">Upcoming Events</h3>
-              <ul className="space-y-2 text-white">
-                {eventDates.map((event, index) => (
-                  <li key={index} className="flex justify-between">
-                    <span>{event.event}</span>
-                    <span>{event.date.toLocaleDateString()}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="md:col-span-2 flex justify-center">
+              <Button className="bg-[#03033B] hover:bg-[#03033B]/90 text-white font-semibold px-6 py-2 rounded-full">
+                Book
+              </Button>
             </div>
+          </form>
+        </div>
+
+        {/* Calendar Card */}
+        <div className="bg-[#F7E0A3] rounded-3xl p-6 shadow-2xl lg:w-2/5">
+          <h2 className="text-gray-800 text-lg font-semibold mb-4 text-center">Calendar</h2>
+
+          <div className="flex justify-center mb-4">
+            <Calendar
+              onChange={setDate} // Updates the selected date
+              value={date}
+              tileClassName={({ date, view }) => {
+                // Highlight event dates
+                const eventDate = eventDates.find(
+                  (event) => event.date.toDateString() === date.toDateString()
+                );
+                return eventDate ? 'bg-[#03033B] text-white' : '';
+              }}
+            />
+          </div>
+
+          {/* Upcoming Events Section */}
+          <div className="mt-12 p-4 bg-white rounded-lg">
+            <h3 className="text-[#03033B] font-medium mb-2">Upcoming Events</h3>
+            <ul className="space-y-2 text-gray-800">
+              {eventDates.map((event, index) => (
+                <li key={index} className="flex justify-between">
+                  <span>{event.event}</span>
+                  <span>{event.date.toLocaleDateString()}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
