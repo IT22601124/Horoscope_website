@@ -29,21 +29,32 @@ function App() {
     <Router>
       <div className="app">
         <nav className="horizontal-nav">
+          {/* Add Logo Here */}
+          <div className="nav-logo">
+            <Link to="/">
+              <img
+                src="/images/logoo.png" // Path to your logo in the public/images directory
+                alt="Dinetha Astrology Logo"
+                className="logo-image"
+              />
+            </Link>
+          </div>
+
           <ul className="nav-menu">
             <li>
-              <Link to="/"><Text family='Garamond'>Home</Text></Link>
+              <Link to="/" className="nav-link"><Text family='Garamond'>Home</Text></Link>
             </li>
             <li>
-              <Link to="/book"><Text family='Garamond'>Booking</Text></Link>
+              <Link to="/book" className="nav-link"><Text family='Garamond'>Booking</Text></Link>
             </li>
             <li>
-              <Link to="/blog"><Text family='Garamond'>Blog</Text></Link>
+              <Link to="/blog" className="nav-link"><Text family='Garamond'>Blog</Text></Link>
             </li>
             <li>
-              <Link to="/contact"><Text family='Garamond'>Contact</Text></Link>
+              <Link to="/contact" className="nav-link"><Text family='Garamond'>Contact</Text></Link>
             </li>
             <li>
-              <Link to="/about"><Text family='Garamond'>About</Text></Link>
+              <Link to="/about" className="nav-link"><Text family='Garamond'>About</Text></Link>
             </li>
           </ul>
           <div className='clock'>

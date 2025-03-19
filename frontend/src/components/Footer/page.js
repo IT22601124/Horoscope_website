@@ -1,49 +1,64 @@
-import { Facebook, Instagram, Mail, MapPin, Phone, Twitter } from "lucide-react"
-import React from "react"
+import { Facebook, Instagram, Mail, MapPin, Phone, Youtube } from "lucide-react";
+import React from "react";
 
 export default function AdvisorsFooter() {
   return (
-    <footer className="bg-white py-4 px-4 md:px-8 lg:px-16">
+    <footer className="bg-white py-5 px-4 md:px-8 lg:px-16">
+      {/* Divider */}
+      <div className="border-t-2 border-[#000033] my-6"></div> {/* Updated Divider */}
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between mb-6">
           {/* Left Section */}
           <div className="mb-6 md:mb-0">
             <div className="flex items-center mb-4">
-              <div className="relative w-12 h-12 mr-3">
-                <div className="absolute inset-0 bg-[#008080] rounded-full opacity-10"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 border-2 border-[#000000] rounded-full"></div>
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4 w-6 h-3 bg-[#f5f7f8]"></div>
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4 w-5 h-2 bg-yellow-400"></div>
-              </div>
-              <h2 className="text-[#000000] text-2xl font-bold">Dinetha Astrology</h2>
+              {/* Logo */}
+              <img
+                src="/images/logoo.png" // Path to your logo in the public/images directory
+                alt="Dinetha Astrology Logo"
+                className="w-62 h-32 "
+              />
+              
             </div>
             {/* Social Media Icons */}
             <div className="flex space-x-4">
-              <a href="#" className="bg-[#0c0c0c] text-white p-3 rounded-full hover:bg-[#008080] transition-colors">
-                <Facebook size={20} />
+              <a
+                href="https://www.facebook.com/share/14MzYpduyU/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#0c0c0c] text-white p-3 rounded-full hover:bg-[#008080] transition-colors"
+              >
+                <Facebook size={17} />
                 <span className="sr-only">Facebook</span>
               </a>
-              <a href="#" className="bg-[#0c0c0c] text-white p-3 rounded-full hover:bg-[#008080] transition-colors">
-                <Twitter size={20} />
-                <span className="sr-only">Twitter</span>
+              <a
+                href="https://www.youtube.com/@DhanushkaVithanageOfficial"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#0c0c0c] text-white p-3 rounded-full hover:bg-[#008080] transition-colors"
+              >
+                <Youtube size={17} />
+                <span className="sr-only">YouTube</span>
               </a>
-              <a href="#" className="bg-[#0c0c0c] text-white p-3 rounded-full hover:bg-[#008080] transition-colors">
-                <Instagram size={20} />
-                <span className="sr-only">Instagram</span>
+              <a
+                href="https://wa.me/94772279389"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#0c0c0c] text-white p-3 rounded-full hover:bg-[#008080] transition-colors"
+              >
+                <Instagram size={17} />
+                <span className="sr-only">WhatsApp</span>
               </a>
             </div>
           </div>
 
           {/* Right Section - Contact Info */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             {/* Address 1 */}
             <div className="flex items-start">
-              <MapPin className="text-[#000000] mr-3 mt-1 flex-shrink-0" />
-              <p className="text-[#1e1e1e]">
-                12/53, Town Council Road,
-                <br />
-                Elpitiya, Sri Lanka
+              <MapPin className="text-[#000000] mr-3 mt-2 flex-shrink-0" />
+              <p className="text-[#1e1e1e] mt-2">
+                12/53, Town Council Road, Elpitiya, Sri Lanka
               </p>
             </div>
 
@@ -51,16 +66,17 @@ export default function AdvisorsFooter() {
             <div className="flex items-start">
               <MapPin className="text-[#000000] mr-3 mt-1 flex-shrink-0" />
               <p className="text-[#1e1e1e]">
-                158/C/21, 1st Lane,
-                <br />
-                Rajasinghe Mawatha, Imbulgoda, Sri Lanka
+                158/C/21, 1st Lane, Rajasinghe Mawatha, Imbulgoda, Sri Lanka
               </p>
             </div>
 
             {/* Email */}
             <div className="flex items-center">
               <Mail className="text-[#000000] mr-3 flex-shrink-0" />
-              <a href="mailto:info@dinethaastrology.com" className="text-[#1e1e1e] hover:text-[#008080]">
+              <a
+                href="mailto:info@dinethaastrology.com"
+                className="text-[#1e1e1e] hover:text-[#008080]"
+              >
                 info@dinethaastrology.com
               </a>
             </div>
@@ -83,11 +99,14 @@ export default function AdvisorsFooter() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-gray-200 my-4"></div>
+      <div className="border-t-2 border-[#000033] my-1"></div> {/* Updated Divider */}
+      {/* Main Footer Content */}
 
         {/* Bottom Footer */}
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-[#231f20] mb-4 md:mb-0">© 2023 Dinetha Astrology. All rights reserved.</p>
+          <p className="text-[#231f20] mb-4 md:mb-0">
+            © 2025 NextGen Webworks. All rights reserved.
+          </p>
           <div className="flex space-x-6">
             <a href="#" className="text-[#231f20] hover:text-[#008080]">
               Terms & Conditions
@@ -99,5 +118,5 @@ export default function AdvisorsFooter() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

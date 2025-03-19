@@ -1,15 +1,52 @@
-.app {
+/* Navigation Bar Styling */
+.horizontal-nav {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Ensures full height */
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 60px;
+  background-color: white; /* Change background color to white */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
 }
 
-.content {
-  flex: 1; /* Pushes footer to the bottom */
+.nav-logo .logo-image {
+  height:100px; /* Adjust height as needed */
+  width: auto; /* Maintain aspect ratio */
+  background: transparent; /* Ensure logo background is transparent */
 }
 
-footer {
+.nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li {
+  margin-left: 20px; /* Adjust spacing between menu items */
+}
+
+.nav-menu li a {
+  text-decoration: none;
+  color: #333; /* Adjust text color as needed */
+  font-size: 16px;
+  position: relative; /* Required for the hover effect */
+  padding-bottom: 5px; /* Space for the fat line */
+}
+
+/* Fat line on hover */
+.nav-menu li a:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
   width: 100%;
-  background-color: #f8f8f8;
-  padding: 20px 0;
+  height: 4px; /* Thickness of the fat line */
+  background-color: gold; /* Gold color */
+}
+
+.clock {
+  margin-left: auto; /* Push the clock to the right */
+  font-size: 18px;
+  color: #333; /* Adjust text color as needed */
+  background-color: gold;
 }
