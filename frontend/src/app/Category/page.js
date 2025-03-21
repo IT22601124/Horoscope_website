@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ChevronDown, ChevronUp } from "lucide-react"
+import { ChevronDown, ChevronUp, Link } from "lucide-react"
 
 export default function BookNowPage() {
   const [expandedCategory, setExpandedCategory] = useState(null)
@@ -130,9 +130,11 @@ export default function BookNowPage() {
                   >
                     <div className="p-6 bg-white rounded-lg shadow-md">
                       <p className="text-gray-700 leading-relaxed mb-4">{category.description}</p>
+                      
                       <a
                         href="/booking"
                         className="block w-full py-3 px-6 bg-blue-900 text-white text-center rounded-lg hover:bg-blue-800 transition-colors"
+                        
                       >
                         Go to Booking Page
                       </a>

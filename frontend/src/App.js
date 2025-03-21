@@ -7,14 +7,18 @@ import Font, { Text } from 'react-font';
 import './App.css';
 import './css/vertical-nav.css';
 import AppointmentBooking from './screens/appointment';
-import AstrologyForm from './app/Booking/page';
+import BookingPage from './app/Booking/page';
 import Blog from './app/Blogs/page';
 import ContactUs from './app/ContactUs/page';
 import Footer from './components/Footer/page';
 import Category from './app/Category/page';
+import AstrologyForm from './app/Booking/page';
+import BookNowPage from './app/Category/page';
+
 import Admin from './app/Admin/page';
 import Rebooking from './app/ReBooking/page';
 import AddNotice from './app/AddNotice/page'; // Import the AddNotice component
+
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -75,9 +79,13 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/booking" element={<AstrologyForm />} />
+
+            <Route path="/booknowpage" element={<BookNowPage />} />
+
             <Route path="/Admin" element={<Admin />} />
             <Route path="/ReBooking" element={<Rebooking />} />
             <Route path="/AddNotice" element={<AddNotice />} /> {/* Add AddNotice route */}
+
           </Routes>
         </div>
 

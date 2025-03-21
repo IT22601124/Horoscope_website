@@ -2,3 +2,4 @@ node_modules
 backend/config/firebase-service-account.json
 backend/config/.env
 .qodo
+backend/config/firebase.js
