@@ -6,6 +6,8 @@ import 'react-calendar/dist/Calendar.css'; // Import the CSS for the calendar
 
 export default function AstrologyForm() {
   const [date, setDate] = useState(new Date()); // State to handle the selected date
+  const [bookingDate, setBookingDate] = useState(new Date()); // State for booking date
+  const [bookingTime, setBookingTime] = useState(''); // State for booking time
 
   const eventDates = [
     { event: "Consultation", date: new Date(2023, 2, 20) }, // Mar 20
@@ -15,6 +17,18 @@ export default function AstrologyForm() {
 
   // Sort the eventDates in ascending order by the event date
   eventDates.sort((a, b) => a.date - b.date);
+
+  // Time slots for booking
+  const timeSlots = [
+    '3:00 PM - 3:30 PM',
+    '3:30 PM - 4:00 PM',
+    '4:00 PM - 4:30 PM',
+    '4:30 PM - 5:00 PM',
+    '5:00 PM - 5:30 PM',
+    '7:00 PM - 8:00 PM (VIP)',
+    '8:00 PM - 9:00 PM (VIP)',
+    '9:00 PM - 10:00 PM (VIP)',
+  ];
 
   return (
     <div className="min-h-screen bg-white">
@@ -82,6 +96,37 @@ export default function AstrologyForm() {
               <div>
                 <label className="block text-gray-800 mb-2">රට</label>
                 <Input className="w-full bg-white border-gray-300 text-gray-800" placeholder="රට" />
+              </div>
+            </div>
+
+            {/* Booking Date and Time Section */}
+            <div className="md:col-span-2 space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-gray-800 mb-2">Booking Date</label>
+                  <div className="bg-white rounded-md p-2">
+                    <Calendar
+                      onChange={setBookingDate}
+                      value={bookingDate}
+                      className="w-full"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-gray-800 mb-2">Booking Time</label>
+                  <select
+                    className="w-full bg-white border-gray-300 text-gray-800 rounded-md p-2"
+                    value={bookingTime}
+                    onChange={(e) => setBookingTime(e.target.value)}
+                  >
+                    <option value="" disabled>Select a time</option>
+                    {timeSlots.map((time, index) => (
+                      <option key={index} value={time}>
+                        {time}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
             </div>
 
