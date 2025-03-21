@@ -8,6 +8,7 @@ export default function AstrologyForm() {
   const [date, setDate] = useState(new Date()); // State to handle the selected date
   const [bookingDate, setBookingDate] = useState(new Date()); // State for booking date
   const [bookingTime, setBookingTime] = useState(''); // State for booking time
+  const [errors, setErrors] = useState({}); // State to handle validation errors
 
   const eventDates = [
     { event: "Consultation", date: new Date(2023, 2, 20) }, // Mar 20
@@ -30,6 +31,100 @@ export default function AstrologyForm() {
     '9:00 PM - 10:00 PM (VIP)',
   ];
 
+  // Restrict numbers in name and birthplace fields
+  const restrictNumbers = (e) => {
+    e.target.value = e.target.value.replace(/[0-9]/g, ''); // Remove numbers
+  };
+
+  // Restrict strings in phone number field
+  const restrictStrings = (e) => {
+    e.target.value = e.target.value.replace(/\D/g, ''); // Allow only numbers
+  };
+
+  // Validation function
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Name validation (no numbers allowed)
+    const name = document.getElementById('name').value.trim();
+    if (!name) {
+      newErrors.name = 'Name is required';
+    } else if (/\d/.test(name)) {
+      newErrors.name = 'Name cannot contain numbers';
+    }
+
+    // Birthdate validation
+    if (!document.getElementById('birthdate').value) {
+      newErrors.birthdate = 'Birthdate is required';
+    }
+
+    // Birthtime validation
+    if (!document.getElementById('birthtime').value) {
+      newErrors.birthtime = 'Birthtime is required';
+    }
+
+    // Birthplace validation (no numbers allowed)
+    const birthplace = document.getElementById('birthplace').value.trim();
+    if (!birthplace) {
+      newErrors.birthplace = 'Birthplace is required';
+    } else if (/\d/.test(birthplace)) {
+      newErrors.birthplace = 'Birthplace cannot contain numbers';
+    }
+
+    // Phone number validation (only numbers allowed)
+    const phone = document.getElementById('phone').value.trim();
+    if (!phone) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!/^\d{10}$/.test(phone)) {
+      newErrors.phone = 'Invalid phone number (must be 10 digits)';
+    }
+
+    // Email validation (must contain @)
+    const email = document.getElementById('email').value.trim();
+    if (!email) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = 'Invalid email address (must contain @)';
+    }
+
+    // Address validation
+    if (!document.getElementById('address').value.trim()) {
+      newErrors.address = 'Address is required';
+    }
+
+    // Country validation
+    if (!document.getElementById('country').value.trim()) {
+      newErrors.country = 'Country is required';
+    }
+
+    // Booking date validation
+    if (!bookingDate) {
+      newErrors.bookingDate = 'Booking date is required';
+    } else if (bookingDate < new Date()) {
+      newErrors.bookingDate = 'Cannot select past dates';
+    }
+
+    // Booking time validation
+    if (!bookingTime) {
+      newErrors.bookingTime = 'Booking time is required';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0; // Return true if no errors
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      // Form is valid, proceed with submission
+      console.log('Form submitted successfully');
+      // Add your submission logic here
+    } else {
+      console.log('Form has errors');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Main Content */}
@@ -48,42 +143,69 @@ export default function AstrologyForm() {
       <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 max-w-6xl mx-auto">
         {/* Form Card */}
         <div className="bg-[#F7E0A3] rounded-3xl p-6 shadow-2xl lg:w-3/4">
-          <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <form className="grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={handleSubmit}>
             <div className="space-y-4">
               <div>
                 <label className="block text-gray-800 mb-2">නම</label>
-                <Input className="w-full bg-white border-gray-300 text-gray-800" placeholder="ඔබේ නම" />
+                <Input
+                  id="name"
+                  className="w-full bg-white border-gray-300 text-gray-800"
+                  placeholder="ඔබේ නම"
+                  onInput={restrictNumbers} // Restrict numbers
+                />
+                {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
               </div>
               <div>
                 <label className="block text-gray-800 mb-2">උපන් දිනය</label>
-                <Input className="w-full bg-white border-gray-300 text-gray-800" type="date" />
+                <Input
+                  id="birthdate"
+                  className="w-full bg-white border-gray-300 text-gray-800"
+                  type="date"
+                />
+                {errors.birthdate && <p className="text-red-500 text-sm">{errors.birthdate}</p>}
               </div>
               <div>
                 <label className="block text-gray-800 mb-2">උපන් වේලාව</label>
-                <Input className="w-full bg-white border-gray-300 text-gray-800" type="time" />
+                <Input
+                  id="birthtime"
+                  className="w-full bg-white border-gray-300 text-gray-800"
+                  type="time"
+                />
+                {errors.birthtime && <p className="text-red-500 text-sm">{errors.birthtime}</p>}
               </div>
             </div>
 
             <div className="space-y-4">
               <div>
                 <label className="block text-gray-800 mb-2">උපන් ස්ථානය</label>
-                <Input className="w-full bg-white border-gray-300 text-gray-800" placeholder="උපන් ස්ථානය" />
+                <Input
+                  id="birthplace"
+                  className="w-full bg-white border-gray-300 text-gray-800"
+                  placeholder="උපන් ස්ථානය"
+                   // Restrict numbers
+                />
+                {errors.birthplace && <p className="text-red-500 text-sm">{errors.birthplace}</p>}
               </div>
               <div>
                 <label className="block text-gray-800 mb-2">දුරකථන අංකය</label>
                 <Input
+                  id="phone"
                   className="w-full bg-white border-gray-300 text-gray-800"
                   type="tel"
                   placeholder="දුරකථන අංකය"
+                  onInput={restrictStrings} // Restrict strings
                 />
+                {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
               </div>
               <div>
                 <label className="block text-gray-800 mb-2">විද්‍යුත් තැපෑල</label>
                 <Input
+                  id="email"
                   className="w-full bg-white border-gray-300 text-gray-800"
                   type="email"
                   placeholder="විද්‍යුත් තැපෑල"
                 />
+                {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
               </div>
             </div>
 
@@ -91,11 +213,21 @@ export default function AstrologyForm() {
             <div className="md:col-span-2 space-y-4">
               <div>
                 <label className="block text-gray-800 mb-2">ලිපිනය</label>
-                <Input className="w-full bg-white border-gray-300 text-gray-800" placeholder="ලිපිනය" />
+                <Input
+                  id="address"
+                  className="w-full bg-white border-gray-300 text-gray-800"
+                  placeholder="ලිපිනය"
+                />
+                {errors.address && <p className="text-red-500 text-sm">{errors.address}</p>}
               </div>
               <div>
                 <label className="block text-gray-800 mb-2">රට</label>
-                <Input className="w-full bg-white border-gray-300 text-gray-800" placeholder="රට" />
+                <Input
+                  id="country"
+                  className="w-full bg-white border-gray-300 text-gray-800"
+                  placeholder="රට"
+                />
+                {errors.country && <p className="text-red-500 text-sm">{errors.country}</p>}
               </div>
             </div>
 
@@ -103,17 +235,19 @@ export default function AstrologyForm() {
             <div className="md:col-span-2 space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-gray-800 mb-2">Booking Date</label>
+                  <label className="block text-gray-800 mb-2">වෙන්කරවා ගැනීමෙ දිනය(Booking Date)</label>
                   <div className="bg-white rounded-md p-2">
                     <Calendar
                       onChange={setBookingDate}
                       value={bookingDate}
+                      minDate={new Date()} // Disable past dates
                       className="w-full"
                     />
                   </div>
+                  {errors.bookingDate && <p className="text-red-500 text-sm">{errors.bookingDate}</p>}
                 </div>
                 <div>
-                  <label className="block text-gray-800 mb-2">Booking Time</label>
+                  <label className="block text-gray-800 mb-2">වෙන්කරවා ගැනීමෙ වේලාව(Booking Time)</label>
                   <select
                     className="w-full bg-white border-gray-300 text-gray-800 rounded-md p-2"
                     value={bookingTime}
@@ -126,6 +260,7 @@ export default function AstrologyForm() {
                       </option>
                     ))}
                   </select>
+                  {errors.bookingTime && <p className="text-red-500 text-sm">{errors.bookingTime}</p>}
                 </div>
               </div>
             </div>
@@ -139,7 +274,10 @@ export default function AstrologyForm() {
             </div>
 
             <div className="md:col-span-2 flex justify-center">
-              <Button className="bg-[#03033B] hover:bg-[#03033B]/90 text-white font-semibold px-6 py-2 rounded-full">
+              <Button
+                type="submit"
+                className="bg-[#03033B] hover:bg-[#03033B]/90 text-white font-semibold px-6 py-2 rounded-full"
+              >
                 Book
               </Button>
             </div>

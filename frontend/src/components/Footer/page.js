@@ -1,5 +1,7 @@
 import { Facebook, Instagram, Mail, MapPin, Phone, Youtube } from "lucide-react";
 import React from "react";
+import { Link } from 'react-router-dom';
+
 
 export default function AdvisorsFooter() {
   return (
@@ -108,12 +110,8 @@ export default function AdvisorsFooter() {
             © 2025 NextGen Webworks. All rights reserved.
           </p>
           <div className="flex space-x-6">
-            <a href="#" className="text-[#231f20] hover:text-[#008080]">
-              Terms & Conditions
-            </a>
-            <a href="#" className="text-[#231f20] hover:text-[#008080]">
-              Privacy Policy
-            </a>
+            <Link to="/terms" className="text-[#231f20] hover:text-[#008080]">Terms & Conditions</Link>
+            <Link to="/privacy" className="text-[#231f20] hover:text-[#008080]">Privacy Policy</Link>
           </div>
         </div>
       </div>

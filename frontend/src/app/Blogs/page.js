@@ -80,7 +80,7 @@ export default function Blog() {
         <div className="relative mb-10">
           <div className="bg-gradient-to-r from-amber-100 to-amber-300 rounded-full py-6 text-center shadow-md">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-800">
-              New Vidoes
+              Blogs
             </h2>
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2">
               <div className="w-20 h-1 bg-amber-500 rounded-full"></div>

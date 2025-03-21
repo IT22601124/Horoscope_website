@@ -100,7 +100,7 @@ export default function BookNowPage() {
                         href="/booking"
                         className="block w-full py-3 px-6 bg-blue-900 text-white text-center rounded-lg hover:bg-blue-800 transition-colors"
                       >
-                        Go to Booking Page
+                        Book A Appoinment
                       </a>
                     </div>
                   </div>
@@ -136,7 +136,7 @@ export default function BookNowPage() {
                         className="block w-full py-3 px-6 bg-blue-900 text-white text-center rounded-lg hover:bg-blue-800 transition-colors"
                         
                       >
-                        Go to Booking Page
+                        Book A Appoinment
                       </a>
                     </div>
                   </div>
