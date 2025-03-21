@@ -19,7 +19,7 @@ export default function Home() {
     <div 
       className="min-h-screen flex flex-col items-center justify-center py-10 relative"
       style={{
-        backgroundImage: `url('/images/gold.png')`, // Background image path
+        backgroundImage: `url('/images/.png')`, // Background image path
         backgroundSize: 'cover', // Ensure the image covers the entire page
         backgroundPosition: 'center', // Center the background image
         backgroundRepeat: 'no-repeat', // Prevent the image from repeating
@@ -51,7 +51,7 @@ export default function Home() {
           <h2 className="text-4xl text-white font-bold mb-4">සියලුම ජෝතීශ්‍ය කටයුතු විශ්මිත පලාපල....</h2>
           <br />
           <p className="mb-6 text-sm">
-             ෝතීශ්‍ය විද්‍යාශූරී - දිල්රුක්ශි ලියනග
+             ජෝතීශ්‍ය විද්‍යාශූරී - දිල්රුක්ශි ලියනග
           </p>
           <br />
           

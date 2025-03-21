@@ -15,6 +15,11 @@ import Category from './app/Category/page';
 import AstrologyForm from './app/Booking/page';
 import BookNowPage from './app/Category/page';
 
+import Admin from './app/Admin/page';
+import Rebooking from './app/ReBooking/page';
+import AddNotice from './app/AddNotice/page'; // Import the AddNotice component
+
+
 function App() {
   const [time, setTime] = useState(new Date());
 
@@ -35,7 +40,7 @@ function App() {
           <div className="nav-logo">
             <Link to="/">
               <img
-                src="/images/logoo.png" // Path to your logo in the public/images directory
+                src="/images/logoo.png"
                 alt="Dinetha Astrology Logo"
                 className="logo-image"
               />
@@ -74,7 +79,13 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/booking" element={<AstrologyForm />} />
+
             <Route path="/booknowpage" element={<BookNowPage />} />
+
+            <Route path="/Admin" element={<Admin />} />
+            <Route path="/ReBooking" element={<Rebooking />} />
+            <Route path="/AddNotice" element={<AddNotice />} /> {/* Add AddNotice route */}
+
           </Routes>
         </div>
 
