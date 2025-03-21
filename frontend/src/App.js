@@ -18,6 +18,7 @@ import BookNowPage from './app/Category/page';
 import Admin from './app/Admin/page';
 import Rebooking from './app/ReBooking/page';
 import AddNotice from './app/AddNotice/page'; // Import the AddNotice component
+import BookingForm from './app/Booking/page';
 
 
 function App() {
@@ -85,6 +86,7 @@ function App() {
             <Route path="/Admin" element={<Admin />} />
             <Route path="/ReBooking" element={<Rebooking />} />
             <Route path="/AddNotice" element={<AddNotice />} /> {/* Add AddNotice route */}
+            <Route path="/bookingForm" element={<BookingForm />} />
 
           </Routes>
         </div>
