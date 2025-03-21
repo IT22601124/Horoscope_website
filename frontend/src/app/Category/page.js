@@ -1,14 +1,16 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { ChevronDown, ChevronUp, Link } from "lucide-react"
+import { useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 
 export default function BookNowPage() {
-  const [expandedCategory, setExpandedCategory] = useState(null)
+  const [expandedCategory, setExpandedCategory] = useState(null);
+  const navigate = useNavigate(); // Initialize the navigate function
 
   const toggleDescription = (id) => {
-    setExpandedCategory(expandedCategory === id ? null : id)
-  }
+    setExpandedCategory(expandedCategory === id ? null : id);
+  };
 
   const categories = [
     {
@@ -57,7 +59,11 @@ export default function BookNowPage() {
       name: "බහිරව පූජාවන්",
       description: "ඉඩකඩම්,නිවාස ව්‍යාපාර ස්ථාන වල පවතින නොයෙකුත් දෝෂ ,බන්ධන ඉවත්  කර දියුණුවට කටයුතු කිරීම.",
     },
-  ]
+  ];
+
+  const goToBookingPage = (name) => {
+    navigate(`/bookingForm?name=${encodeURIComponent(name)}`); // Navigate to booking page with the name as a query parameter
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
@@ -96,12 +102,12 @@ export default function BookNowPage() {
                   >
                     <div className="p-6 bg-white rounded-lg shadow-md">
                       <p className="text-gray-700 leading-relaxed mb-4">{category.description}</p>
-                      <a
-                        href="/booking"
+                      <button
+                        onClick={() => goToBookingPage(category.name)} // Pass the category name to the booking page
                         className="block w-full py-3 px-6 bg-blue-900 text-white text-center rounded-lg hover:bg-blue-800 transition-colors"
                       >
                         Go to Booking Page
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -130,14 +136,12 @@ export default function BookNowPage() {
                   >
                     <div className="p-6 bg-white rounded-lg shadow-md">
                       <p className="text-gray-700 leading-relaxed mb-4">{category.description}</p>
-                      
-                      <a
-                        href="/booking"
+                      <button
+                        onClick={() => goToBookingPage(category.name)} // Pass the category name to the booking page
                         className="block w-full py-3 px-6 bg-blue-900 text-white text-center rounded-lg hover:bg-blue-800 transition-colors"
-                        
                       >
                         Go to Booking Page
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -147,6 +151,6 @@ export default function BookNowPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
