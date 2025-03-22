@@ -2,78 +2,91 @@
 .horizontal-nav {
     position: sticky;
     top: 0;
-    width: 100%; 
-    box-shadow: 0px 4px 10px rgba(6, 5, 5, 0.1); /* Subtle shadow */
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
+    width: 100%;
+    background-color: #fff; /* Add background color */
     z-index: 1000;
     display: flex;
-    justify-content: space-between; /* Distribute space between items */
+    justify-content: space-between;
     align-items: center;
-    backdrop-filter: blur(40px); /* Blur effect */
-}
-
-/* Navigation Menu */
-.nav-menu {
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+  }
+  
+  /* Logo */
+  .nav-logo img {
+    height: 50px; /* Adjust logo size */
+  }
+  
+  /* Hamburger Menu */
+  .hamburger-menu {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  .hamburger-menu .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #1a0909;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+  }
+  
+  /* Navigation Menu */
+  .nav-menu {
     display: flex;
-    color: #1a0909;
     justify-content: center;
     align-items: center;
     gap: 30px;
-    flex-grow: 1; /* Allows menu to take available space */
-}
-
-.horizontal-nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    gap: 30px;
-}
-
-.horizontal-nav ul li {
-    font-weight: 600;
-}
-
-.horizontal-nav ul li a {
+  }
+  
+  .nav-menu li a {
     color: #1a0909;
     text-decoration: none;
-    font-size: 22px;
-    padding: 10px 15px;
-    transition: all 0.3s ease-in-out;
-    border-radius: 5px;
-}
-
-.horizontal-nav ul li a:hover {
-    font-size: 20px;
-    box-shadow: 0px 2px 8px rgba(0, 123, 255, 0.3);
-}
-
-/* Clock aligned to the right */
-.clock {
-    position: absolute;
     font-size: 18px;
-    color: rgb(8, 8, 8);
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+  }
+  
+  .nav-menu li a:hover {
+  }
+  
+  /* Clock */
+  .clock {
+    font-size: 18px;
+    color: #1a0909;
     padding: 10px 15px;
     border-radius: 10px;
-    text-align: center;
-    right: 0;
-}
-
-/* Responsive Navbar */
-@media (max-width: 768px) {
-    .horizontal-nav {
-        flex-direction: column;
-        align-items: center;
+  }
+  
+  /* Responsive Navbar */
+  @media (max-width: 768px) {
+    .hamburger-menu {
+      display: flex; /* Show hamburger menu on mobile */
     }
-
+  
     .nav-menu {
-        flex-direction: column;
-        gap: 15px;
+      display: none; /* Hide menu by default on mobile */
+      flex-direction: column;
+      gap: 15px;
+      position: absolute;
+      top: 70px; /* Adjust based on nav height */
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-
+  
+    .nav-menu.open {
+      display: flex; /* Show menu when open */
+    }
+  
     .clock {
-        margin-top: 10px;
-        margin-left: 0; /* Reset margin on smaller screens */
+      display: none; /* Hide clock on mobile */
     }
-}
+  }
