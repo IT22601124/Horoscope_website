@@ -10,7 +10,7 @@
 
 # production
 /build
-
+backend/config/firebase-service-account.json
 # misc
 .DS_Store
 .env.local
