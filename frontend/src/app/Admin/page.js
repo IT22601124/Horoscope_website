@@ -20,7 +20,7 @@ const Admin = () => {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/user/get-users'); // Replace with your backend API endpoint
+        const response = await fetch('http://localhost:5001/api/user/get-users'); // Replace with your backend API endpoint
         if (!response.ok) {
           throw new Error('Failed to fetch details');
         }
@@ -39,7 +39,7 @@ const Admin = () => {
   // Handle status change
   const handleStatusChange = async (id, index) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/user/update-user/${id}`, {
+      const response = await fetch(`http://localhost:5001/api/user/update-user/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
