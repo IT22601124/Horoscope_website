@@ -14,7 +14,7 @@ console.log('Firebase Admin SDK initialized');
 (async () => {
   try {
     const testCollection = await db.collection('users').get(); // Replace 'users' with your collection name
-    console.log(`Successfully connected to Firestore. Found ${testCollection.size} documents in the 'users' collection.`);
+    //console.log(⁠ Successfully connected to Firestore. Found ${testCollection.size} documents in the 'users' collection. ⁠);
   } catch (error) {
     console.error('Error connecting to Firestore:', error.message);
   }

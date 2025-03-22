@@ -45,7 +45,7 @@ export default function BookingForm() {
         bookingDate: localDate.toISOString().split('T')[0], // Convert to YYYY-MM-DD
       };
   
-      const response = await fetch('http://localhost:5000/api/user/add-user', {
+      const response = await fetch('http://localhost:5001/api/user/add-user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export default function BookingForm() {
   useEffect(() => {
     const fetchBookedDates = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/user/get-users');
+        const response = await fetch('http://localhost:5001/api/user/get-users');
         if (response.ok) {
           const users = await response.json();
           const dates = users.map((user) => ({
