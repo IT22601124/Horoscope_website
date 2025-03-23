@@ -1,11 +1,49 @@
-import React from "react";
-import { Mail, Phone, MessageCircle, MapPin } from "lucide-react"; // Added MapPin icon
+import React, { useRef } from "react";
+import { Mail, Phone, MessageCircle, MapPin } from "lucide-react";
+import emailjs from "@emailjs/browser"; // Import EmailJS
 
 const ContactUs = () => {
+  const form = useRef(); // Create a ref for the form
+
+  const sendEmail = (e) => {
+    e.preventDefault(); // Prevent the default form submission
+
+    // Debug: Check if form.current is valid
+    if (!form.current) {
+      console.error("Form ref is not attached.");
+      return;
+    }
+
+    // Send the email using EmailJS
+    emailjs
+      .sendForm(
+        "service_c555yqm", // Replace with your EmailJS service ID
+        "template_j1lbuca", // Replace with your EmailJS template ID
+        form.current, // Reference to the form
+        "Eb22VPuqVzceWGrB4" // Replace with your EmailJS public key
+      )
+      .then(
+        (result) => {
+          console.log("Email sent successfully!", result.text);
+          alert("Message sent successfully!"); // Notify the user
+
+          // Debug: Check if form.current exists before resetting
+          if (form.current) {
+            form.current.reset(); // Reset the form
+            console.log("Form has been reset.");
+          } else {
+            console.error("Form ref is not available for reset.");
+          }
+        },
+        (error) => {
+          console.error("Failed to send email:", error.text);
+          alert("Failed to send message. Please try again."); // Notify the user
+        }
+      );
+  };
+
   return (
-    <div
-      className="flex flex-col md:flex-row items-center justify-center min-h-screen p-8 bg-cover bg-center bg-opacity-30"
-    >
+    <div className="flex flex-col md:flex-row items-center justify-center min-h-screen p-8 bg-cover bg-center bg-opacity-30">
       {/* Contact Info Section */}
       <div className="bg-[#F7E0A3] p-8 rounded-2xl shadow-2xl w-full md:w-1/2 max-w-md">
         <h2 className="text-4xl font-bold text-center text-[#121212] mb-8">Contact Us</h2>
@@ -48,7 +86,7 @@ const ContactUs = () => {
                 12/53, Town Council Road, Elpitiya
               </p>
             </div>
-            <MapPin className="text-[#FF0000] w-8 h-8" /> {/* Red color for address icon */}
+            <MapPin className="text-[#FF0000] w-8 h-8" />
           </div>
         </div>
       </div>
@@ -56,7 +94,7 @@ const ContactUs = () => {
       {/* Form Section */}
       <div className="bg-[#F7E0A3] p-8 rounded-2xl shadow-2xl w-full md:w-1/2 max-w-md mt-8 md:mt-0 md:ml-8">
         <h2 className="text-4xl font-bold text-center text-[#121212] mb-8">Get in Touch</h2>
-        <form className="space-y-6">
+        <form ref={form} onSubmit={sendEmail} className="space-y-6">
           <div>
             <label className="block text-[#333] font-semibold text-lg mb-2" htmlFor="name">
               Name
@@ -64,8 +102,10 @@ const ContactUs = () => {
             <input
               type="text"
               id="name"
+              name="name" // Add name attribute for EmailJS
               className="w-full p-3 rounded-lg bg-[#F3D480] border-none focus:ring-2 focus:ring-[#0056b3]"
               placeholder="Your Name"
+              required
             />
           </div>
           <div>
@@ -75,8 +115,10 @@ const ContactUs = () => {
             <input
               type="email"
               id="email"
+              name="email" // Add name attribute for EmailJS
               className="w-full p-3 rounded-lg bg-[#F3D480] border-none focus:ring-2 focus:ring-[#0056b3]"
               placeholder="Your Email"
+              required
             />
           </div>
           <div>
@@ -85,9 +127,11 @@ const ContactUs = () => {
             </label>
             <textarea
               id="message"
+              name="message" // Add name attribute for EmailJS
               className="w-full p-3 rounded-lg bg-[#F3D480] border-none focus:ring-2 focus:ring-[#0056b3]"
               placeholder="Your Message"
               rows="4"
+              required
             ></textarea>
           </div>
           <button
