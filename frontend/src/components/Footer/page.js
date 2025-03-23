@@ -75,7 +75,7 @@ export default function AdvisorsFooter() {
                 href="mailto:info@dinethaastrology.com"
                 className="text-[#1e1e1e] hover:text-[#008080]"
               >
-                dinethaastrology.com
+                dinethaastrology@gmail.com
               </a>
             </div>
 
