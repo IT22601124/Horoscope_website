@@ -18,10 +18,36 @@ const AddNotice = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`Notice added for ${selectedCategory.name}: ${e.target.title.value} on ${e.target.date.value}`);
-    setSelectedCategory(null); // Reset form after submission
+
+    const noticeData = {
+      title: e.target.title.value,
+      date: e.target.date.value,
+      description: e.target.description.value,
+      category: selectedCategory.name,
+    };
+
+    try {
+      const response = await fetch('http://localhost:5001/api/notices', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(noticeData),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        alert(`Notice added successfully: ${result.message}`);
+        setSelectedCategory(null); // Reset form after submission
+      } else {
+        const errorData = await response.json();
+        alert(`Failed to add notice: ${errorData.error}`);
+      }
+    } catch (error) {
+      alert(`Error: ${error.message}`);
+    }
   };
 
   return (
@@ -83,6 +109,16 @@ const AddNotice = () => {
                   className="w-full bg-white border border-gray-300 rounded-lg p-2"
                   required
                 />
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-2">Description</label>
+                <textarea
+                  name="description"
+                  className="w-full bg-white border border-gray-300 rounded-lg p-2"
+                  placeholder="Enter description"
+                  rows="4"
+                  required
+                ></textarea>
               </div>
               <div className="flex justify-end gap-4">
                 <button

@@ -6,6 +6,8 @@ import { motion } from "framer-motion"
 
 export default function Home() {
   const [time, setTime] = useState(new Date())
+  const [notices, setNotices] = useState([]); // State to store notices
+  const [loading, setLoading] = useState(true); // State to handle loading
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -14,6 +16,27 @@ export default function Home() {
 
     return () => clearInterval(interval)
   }, [])
+
+  useEffect(() => {
+    // Fetch notices from the API
+    const fetchNotices = async () => {
+      try {
+        const response = await fetch("http://localhost:5001/api/notices");
+        if (response.ok) {
+          const data = await response.json();
+          setNotices(data); // Update state with fetched notices
+        } else {
+          console.error("Failed to fetch notices");
+        }
+      } catch (error) {
+        console.error("Error fetching notices:", error);
+      } finally {
+        setLoading(false); // Stop loading
+      }
+    };
+
+    fetchNotices();
+  }, []); // Empty dependency array ensures this runs only once
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center py-12 bg-white px-6">
@@ -153,31 +176,34 @@ export default function Home() {
           <Bell className="w-6 h-6 text-white" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { title: "Important Announcement", color: "text-blue-600", date: "2023-10-01" },
-            { title: "Upcoming Event", color: "text-purple-600", date: "2023-10-05" },
-            { title: "Maintenance Schedule", color: "text-orange-600", date: "2023-10-10" },
-          ].map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 + index * 0.2 }}
-              className="bg-white rounded-xl p-6 shadow h-48 flex flex-col justify-between"
-            >
-              <div className={`flex items-center mb-4 ${item.color}`}>
-                <Calendar className="w-5 h-5 mr-2" />
-                <h3 className="text-lg font-semibold">{item.title}</h3>
-              </div>
-              <p className="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <div className="flex items-center text-gray-500 text-sm">
-                <Clock className="w-4 h-4 mr-1" />
-                <span>{item.date}</span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {loading ? (
+          <p className="text-white text-center">Loading notices...</p>
+        ) : notices.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {notices.map((notice, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 * index }}
+                className="bg-white rounded-xl p-6 shadow h-48 flex flex-col justify-between"
+              >
+                <div className={`flex items-center mb-4 text-blue-600`}>
+                  <Calendar className="w-5 h-5 mr-2" />
+                  <h3 className="text-lg font-semibold">{notice.category}</h3>
+                </div>
+                <p className="text-black-700 ">{notice.description}</p>
+                <p className="text-gray-700">{notice.description}</p>
+                <div className="flex items-center text-gray-500 text-sm">
+                  <Clock className="w-4 h-4 mr-1" />
+                  <span>{new Date(notice.date).toLocaleDateString()}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-white text-center">No notices available</p>
+        )}
       </motion.section>
     </div>
   )

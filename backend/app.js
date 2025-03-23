@@ -13,4 +13,7 @@ app.use(express.json());
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/user', userRoutes);
 
+const noticeRoutes = require('./routes/noticeRoutes'); // Import notice routes
+app.use('/api/notices', noticeRoutes);
+
 module.exports = app;
