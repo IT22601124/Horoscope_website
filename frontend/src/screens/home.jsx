@@ -54,9 +54,13 @@ export default function Home() {
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-3xl sm:text-6xl font-bold bg-gradient-to-r from-yellow-500 to-orange-600 bg-clip-text pb-4 sm:pb-6 text-transparent text-center"
+              className="text-3xl sm:text-5xl font-bold bg-gradient-to-r from-yellow-500 to-orange-600 bg-clip-text pb-6 sm:pb-5 text-transparent text-center"
             >
-              සියලුම ජෝතීශ්‍ය කටයුතු විශ්මිත පලාපල....
+               <div style={{ paddingBottom: "10px" }}>
+                  සියලුම ජෝතීශ්‍ය කටයුතු
+              </div>
+              <div>විශ්මිත පලාපල....</div>
+
             </motion.h2>
           </div>
           {/* Centered text below the above text */}
@@ -129,8 +133,8 @@ export default function Home() {
               { name: "හඳහන් සෑදීම", icon: "🌙" },
               { name: "පලාපල කථනය", icon: "⭐" },
               { name: "විවාහ පොරොන්දම්", icon: "💍" },
-              { name: "ෙත්කවි", icon: "📜" },
-              { name: "ෙත්පූජා", icon: "🕯️" },
+              { name: "සෙත්කවි", icon: "📜" },
+              { name: "සෙත්පූජා", icon: "🕯️" },
               { name: "මල්වර නැකත්", icon: "🌸" },
               { name: "විවාහ නැකත්", icon: "👰" },
               { name: "නිවාස නැකත්", icon: "🏠" },
