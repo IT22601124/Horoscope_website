@@ -18,6 +18,8 @@ import Admin from './app/Admin/page';
 import Rebooking from './app/ReBooking/page';
 import AddNotice from './app/AddNotice/page';
 import BookingForm from './app/Booking/page';
+import TermsAndConditions from './components/TermsAndConditions';
+import PrivacyPolicy from './components/PrivacyPolicy';
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -108,6 +110,8 @@ function App() {
             <Route path="/ReBooking" element={<Rebooking />} />
             <Route path="/AddNotice" element={<AddNotice />} />
             <Route path="/bookingForm" element={<BookingForm />} />
+            <Route path="/terms" element={<TermsAndConditions />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
           </Routes>
         </div>
 
