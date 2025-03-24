@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AddNotice = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [notices, setNotices] = useState([]); // State to store fetched notices
+  const [loading, setLoading] = useState(true); // State to manage loading state
+  const [error, setError] = useState(null); // State to manage errors
 
   // Categories
   const categories = [
@@ -16,6 +19,26 @@ const AddNotice = () => {
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
+
+  // Fetch notices from the backend
+  useEffect(() => {
+    const fetchNotices = async () => {
+      try {
+        const response = await fetch('http://localhost:5001/api/notices'); // Replace with your backend API endpoint
+        if (!response.ok) {
+          throw new Error('Failed to fetch notices');
+        }
+        const result = await response.json();
+        setNotices(result); // Set the fetched notices
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchNotices();
+  }, []);
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -41,12 +64,38 @@ const AddNotice = () => {
         const result = await response.json();
         alert(`Notice added successfully: ${result.message}`);
         setSelectedCategory(null); // Reset form after submission
+
+        // Refresh the notices list
+        setNotices((prevNotices) => [...prevNotices, noticeData]);
       } else {
         const errorData = await response.json();
         alert(`Failed to add notice: ${errorData.error}`);
       }
     } catch (error) {
       alert(`Error: ${error.message}`);
+    }
+  };
+
+  // Handle delete action
+  const handleDelete = async (id, index) => {
+    try {
+      const response = await fetch(`http://localhost:5001/api/notices/delete-notice/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete notice');
+      }
+
+      // Remove the deleted notice from the local state
+      const updatedNotices = [...notices];
+      updatedNotices.splice(index, 1);
+      setNotices(updatedNotices);
+
+      alert('Notice deleted successfully!');
+    } catch (err) {
+      console.error('Error deleting notice:', err.message);
+      alert(`Failed to delete notice: ${err.message}`);
     }
   };
 
@@ -138,6 +187,50 @@ const AddNotice = () => {
             </form>
           </div>
         )}
+
+        {/* Notices Table */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-bold mb-4">Notice Details</h2>
+          {loading ? (
+            <p>Loading...</p>
+          ) : error ? (
+            <p className="text-red-500">{error}</p>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="min-w-full bg-white border border-gray-300 text-sm">
+                <thead>
+                  <tr className="bg-gray-200">
+                    <th className="py-2 px-4 border-b">Title</th>
+                    <th className="py-2 px-4 border-b">Date</th>
+                    <th className="py-2 px-4 border-b">Category</th>
+                    <th className="py-2 px-4 border-b">Description</th>
+                    <th className="py-2 px-4 border-b">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {notices.map((notice, index) => (
+                    <tr key={index} className="hover:bg-gray-100">
+                      <td className="py-2 px-4 border-b">{notice.title}</td>
+                      <td className="py-2 px-4 border-b">
+                        {new Date(notice.date).toLocaleDateString()}
+                      </td>
+                      <td className="py-2 px-4 border-b">{notice.category}</td>
+                      <td className="py-2 px-4 border-b">{notice.description}</td>
+                      <td className="py-2 px-4 border-b">
+                        <button
+                          onClick={() => handleDelete(notice.id, index)}
+                          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

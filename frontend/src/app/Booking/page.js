@@ -55,7 +55,9 @@ export default function BookingForm() {
   
       if (response.ok) {
         const data = await response.json();
-        alert(`User added successfully with ID: ${data.id}`);
+        alert('Booking added successfully!'); // Success message
+        window.location.reload();
+      
       } else {
         const errorData = await response.json();
         alert(`Error: ${errorData.error}`);
