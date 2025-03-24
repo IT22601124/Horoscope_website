@@ -16,4 +16,7 @@ app.use('/api/user', userRoutes);
 const noticeRoutes = require('./routes/noticeRoutes'); // Import notice routes
 app.use('/api/notices', noticeRoutes);
 
+const authRoutes = require('./routes/authController'); // Ensure the correct path
+app.use('/api/auth', authRoutes);
+
 module.exports = app;

@@ -47,9 +47,6 @@ const Admin = () => {
         body: JSON.stringify({ status: 'accepted' }),
       });
 
-      console.log('Response status:', response.status);
-      console.log('Response body:', await response.text());
-
       if (!response.ok) {
         throw new Error('Failed to update status');
       }
@@ -61,6 +58,29 @@ const Admin = () => {
     } catch (err) {
       console.error('Error updating status:', err.message);
       alert(`Failed to update status: ${err.message}`);
+    }
+  };
+
+  // Handle delete action
+  const handleDelete = async (id, index) => {
+    try {
+      const response = await fetch(`http://localhost:5001/api/user/delete-user/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete user');
+      }
+
+      // Remove the deleted item from the local state
+      const updatedDetails = [...details];
+      updatedDetails.splice(index, 1);
+      setDetails(updatedDetails);
+
+      alert('User deleted successfully!');
+    } catch (err) {
+      console.error('Error deleting user:', err.message);
+      alert(`Failed to delete user: ${err.message}`);
     }
   };
 
@@ -122,48 +142,65 @@ const Admin = () => {
                     <th className="py-2 px-4 border-b">Category</th>
                     <th className="py-2 px-4 border-b">Created At</th>
                     <th className="py-2 px-4 border-b">Status</th>
+                    <th className="py-2 px-4 border-b">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {details.map((detail, index) => (
-                    <tr
-                      key={index}
-                      className="hover:bg-gray-100 cursor-pointer"
-                      onClick={() => handleRowClick(detail)} // Handle row click
-                    >
-                      <td className="py-2 px-4 border-b">{detail.name}</td>
-                      <td className="py-2 px-4 border-b">{detail.birthday}</td>
-                      <td className="py-2 px-4 border-b">{detail.birthTime}</td>
-                      <td className="py-2 px-4 border-b">{detail.birthPlace}</td>
-                      <td className="py-2 px-4 border-b">{detail.phoneNumber}</td>
-                      <td className="py-2 px-4 border-b">{detail.address}</td>
-                      <td className="py-2 px-4 border-b">{detail.country}</td>
-                      <td className="py-2 px-4 border-b">
-                        {new Date(detail.bookingDate).toISOString().split('T')[0]}
-                      </td>
-                      <td className="py-2 px-4 border-b">{detail.bookingTime}</td>
-                      <td className="py-2 px-4 border-b">{detail.nameCat}</td>
-                      <td className="py-2 px-4 border-b">
-                        {new Date(detail.createdAt).toLocaleString()}
-                      </td>
-                      <td className="py-2 px-4 border-b">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation(); // Prevent row click event
-                            handleStatusChange(detail.id, index);
-                          }}
-                          className={`px-4 py-2 rounded ${
-                            detail.status === 'pending'
-                              ? 'bg-yellow-500 text-white'
-                              : 'bg-green-500 text-white'
-                          }`}
-                          disabled={detail.status === 'accepted'}
-                        >
-                          {detail.status === 'pending' ? 'Pending' : 'Accepted'}
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
+                  {details.map((detail, index) => {
+                    const bookingDate = detail.bookingDate ? new Date(detail.bookingDate) : null;
+                    const createdAt = detail.createdAt ? new Date(detail.createdAt) : null;
+
+                    return (
+                      <tr
+                        key={index}
+                        className="hover:bg-gray-100 cursor-pointer"
+                        onClick={() => handleRowClick(detail)} // Handle row click
+                      >
+                        <td className="py-2 px-4 border-b">{detail.name}</td>
+                        <td className="py-2 px-4 border-b">{detail.birthday}</td>
+                        <td className="py-2 px-4 border-b">{detail.birthTime}</td>
+                        <td className="py-2 px-4 border-b">{detail.birthPlace}</td>
+                        <td className="py-2 px-4 border-b">{detail.phoneNumber}</td>
+                        <td className="py-2 px-4 border-b">{detail.address}</td>
+                        <td className="py-2 px-4 border-b">{detail.country}</td>
+                        <td className="py-2 px-4 border-b">
+                          {bookingDate ? bookingDate.toISOString().split('T')[0] : 'N/A'}
+                        </td>
+                        <td className="py-2 px-4 border-b">{detail.bookingTime}</td>
+                        <td className="py-2 px-4 border-b">{detail.nameCat}</td>
+                        <td className="py-2 px-4 border-b">
+                          {createdAt ? createdAt.toLocaleString() : 'N/A'}
+                        </td>
+                        <td className="py-2 px-4 border-b">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation(); // Prevent row click event
+                              handleStatusChange(detail.id, index);
+                            }}
+                            className={`px-4 py-2 rounded ${
+                              detail.status === 'pending'
+                                ? 'bg-yellow-500 text-white'
+                                : 'bg-green-500 text-white'
+                            }`}
+                            disabled={detail.status === 'accepted'}
+                          >
+                            {detail.status === 'pending' ? 'Pending' : 'Accepted'}
+                          </button>
+                        </td>
+                        <td className="py-2 px-4 border-b">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation(); // Prevent row click event
+                              handleDelete(detail.id, index);
+                            }}
+                            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

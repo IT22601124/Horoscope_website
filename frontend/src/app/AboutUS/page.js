@@ -1,10 +1,12 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Use react-router-dom for navigation
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AboutUs = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [showLoginModal, setShowLoginModal] = useState(false); // State to toggle login modal
+  const navigate = useNavigate();
 
-  const navigateToAdmin = () => {
+  const handleLoginSuccess = () => {
+    setShowLoginModal(false); // Close the modal
     navigate('/Admin'); // Navigate to the Admin page
   };
 
@@ -13,20 +15,29 @@ const AboutUs = () => {
       {/* Admin Button (Top-Right Corner) */}
       <div className="flex justify-end mb-8">
         <button
-          onClick={navigateToAdmin}
+          onClick={() => setShowLoginModal(true)} // Open the login modal
           className="bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition duration-300 text-sm"
         >
           Admin
         </button>
       </div>
 
+      {/* Login Modal */}
+      {showLoginModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <LoginPage onSuccess={handleLoginSuccess} onClose={() => setShowLoginModal(false)} />
+          </div>
+        </div>
+      )}
+
       <div className="max-w-6xl mx-auto flex items-center gap-20">
         {/* Logo Section (1/3 width) */}
         <div className="w-1/3 flex justify-center items-center">
           <img
-            src="/images/logoo.png" // Replace with your logo path
+            src="/images/logoo.png"
             alt="Dinetha Astrological Logo"
-            className="h-50 w-90" // Increased logo height
+            className="h-50 w-90"
           />
         </div>
 
@@ -68,6 +79,78 @@ const AboutUs = () => {
           </p>
         </div>
       </div>
+    </div>
+  );
+};
+
+const LoginPage = ({ onSuccess, onClose }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:5001/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Login successful:', data);
+        
+        onSuccess(); // Call the success callback
+      } else {
+        const errorData = await response.json();
+        console.error('Login failed:', errorData.error);
+        alert(`Login failed: ${errorData.error}`);
+      }
+    } catch (error) {
+      console.error('Error during login:', error.message);
+      alert('An error occurred. Please try again.');
+    }
+  };
+
+  return (
+    <div>
+      <h2 className="text-xl font-bold mb-4">Login</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full p-2 mb-4 border border-gray-300 rounded"
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full p-2 mb-4 border border-gray-300 rounded"
+          required
+        />
+        <div className="flex justify-between">
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
+          >
+            Login
+          </button>
+          <button
+            type="button"
+            onClick={onClose}
+            className="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 transition duration-300"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

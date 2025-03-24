@@ -20,6 +20,8 @@ import AddNotice from './app/AddNotice/page';
 import BookingForm from './app/Booking/page';
 import TermsAndConditions from './components/TermsAndConditions';
 import PrivacyPolicy from './components/PrivacyPolicy';
+import LoginPage from './app/Admin/passwrod';
+import RegisterPage from './app/Admin/register';
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -112,6 +114,8 @@ function App() {
             <Route path="/bookingForm" element={<BookingForm />} />
             <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/loginpage" element={<LoginPage />} />
+            {/* <Route path='/register' element={<RegisterPage />} /> */}
           </Routes>
         </div>
 
