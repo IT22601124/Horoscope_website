@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Input from '../../components/ui/input';
 import Button from '../../components/ui/button';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css'; // Import the CSS for the calendar
+import 'react-calendar/dist/Calendar.css';
 
 export default function BookingForm() {
   const location = useLocation();
+  const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
   const nameCat = queryParams.get("name");
 
-  // Ensure the status field is properly initialized
   const [formData, setFormData] = useState({
     name: '',
     birthday: '',
@@ -23,11 +23,14 @@ export default function BookingForm() {
     bookingDate: '',
     bookingTime: '',
     description: '',
-    nameCat: nameCat || '', // Default to an empty string if nameCat is null
-    //status: 'pending', // Initialize status with a default value
+    nameCat: nameCat || '',
   });
 
-  const [bookedDates, setBookedDates] = useState([]); // State to store booked dates and times
+  const [bookedDates, setBookedDates] = useState([]);
+
+  const navigateToBookNowPage = () => {
+    navigate('/BookNowPage');
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,13 +41,13 @@ export default function BookingForm() {
     e.preventDefault();
     try {
       const localDate = new Date(formData.bookingDate);
-      localDate.setMinutes(localDate.getMinutes() - localDate.getTimezoneOffset()); // Adjust for time zone
-  
+      localDate.setMinutes(localDate.getMinutes() - localDate.getTimezoneOffset());
+
       const formattedData = {
         ...formData,
-        bookingDate: localDate.toISOString().split('T')[0], // Convert to YYYY-MM-DD
+        bookingDate: localDate.toISOString().split('T')[0],
       };
-  
+
       const response = await fetch('http://localhost:5001/api/user/add-user', {
         method: 'POST',
         headers: {
@@ -52,12 +55,11 @@ export default function BookingForm() {
         },
         body: JSON.stringify(formattedData),
       });
-  
+
       if (response.ok) {
         const data = await response.json();
-        alert('Booking added successfully!'); // Success message
+        alert('Booking added successfully!');
         window.location.reload();
-      
       } else {
         const errorData = await response.json();
         alert(`Error: ${errorData.error}`);
@@ -67,9 +69,7 @@ export default function BookingForm() {
       alert('An error occurred while adding the user.');
     }
   };
-  
 
-  // Fetch booked dates and times from the backend
   useEffect(() => {
     const fetchBookedDates = async () => {
       try {
@@ -79,7 +79,7 @@ export default function BookingForm() {
           const dates = users.map((user) => ({
             date: new Date(user.bookingDate),
             time: user.bookingTime,
-            status: user.status, // Include the status field
+            status: user.status,
           }));
           setBookedDates(dates);
         } else {
@@ -93,43 +93,38 @@ export default function BookingForm() {
     fetchBookedDates();
   }, []);
 
-  // Check if a date is booked with status 'accepted'
   const isDateBooked = (date) => {
     return bookedDates.some(
       (booked) =>
         booked.date.toDateString() === date.toDateString() &&
-        booked.status === 'accepted' // Only consider dates with 'accepted' status
+        booked.status === 'accepted'
     );
   };
 
-  // Check if a time is booked with status 'accepted'
   const isTimeBooked = (date, time) => {
     return bookedDates.some(
       (booked) =>
         booked.date.toDateString() === date.toDateString() &&
         booked.time === time &&
-        booked.status === 'accepted' // Only consider times with 'accepted' status
+        booked.status === 'accepted'
     );
   };
 
   const tileClassName = ({ date, view }) => {
-    // Highlight booked dates in red
     if (view === 'month' && isDateBooked(date)) {
-      return 'booked-date'; // Apply a custom CSS class for booked dates
+      return 'booked-date';
     }
     return null;
   };
 
   const eventDates = [
-    { event: "Consultation", date: new Date(2023, 2, 20) }, // Mar 20
-    { event: "Full Moon Reading", date: new Date(2023, 2, 25) }, // Mar 25
-    { event: "Astrology Class", date: new Date(2023, 2, 28) }, // Mar 28
+    { event: "Consultation", date: new Date(2023, 2, 20) },
+    { event: "Full Moon Reading", date: new Date(2023, 2, 25) },
+    { event: "Astrology Class", date: new Date(2023, 2, 28) },
   ];
 
-  // Sort the eventDates in ascending order by the event date
   eventDates.sort((a, b) => a.date - b.date);
 
-  // Time slots for booking
   const timeSlots = [
     '3:00 PM - 3:30 PM',
     '3:30 PM - 4:00 PM',
@@ -155,7 +150,7 @@ export default function BookingForm() {
         </div>
       </div>
 
-      {/* Two-column layout for form and calendar */}
+      {/* Two-column layout */}
       <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 max-w-6xl mx-auto">
         {/* Form Card */}
         <div className="bg-[#F7E0A3] rounded-3xl p-6 shadow-2xl lg:w-3/4">
@@ -228,7 +223,6 @@ export default function BookingForm() {
               </div>
             </div>
 
-            {/* Address Section */}
             <div className="md:col-span-2 space-y-4">
               <div>
                 <label className="block text-gray-800 mb-2">ලිපිනය</label>
@@ -241,7 +235,7 @@ export default function BookingForm() {
                 />
               </div>
               <div>
-                <label class="block text-gray-800 mb-2">රට</label>
+                <label className="block text-gray-800 mb-2">රට</label>
                 <Input
                   className="w-full bg-white border-gray-300 text-gray-800"
                   placeholder="රට"
@@ -252,7 +246,6 @@ export default function BookingForm() {
               </div>
             </div>
 
-            {/* Booking Date and Time Section */}
             <div className="md:col-span-2 space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -311,16 +304,13 @@ export default function BookingForm() {
         {/* Calendar Card */}
         <div className="bg-[#F7E0A3] rounded-3xl p-6 shadow-2xl lg:w-2/5">
           <h2 className="text-gray-800 text-lg font-semibold mb-4 text-center">Calendar</h2>
-
           <div className="flex justify-center mb-4">
             <Calendar
-              onChange={(date) => setFormData({ ...formData, bookingDate: date })} // Updates the selected date
+              onChange={(date) => setFormData({ ...formData, bookingDate: date })}
               value={formData.bookingDate}
               tileClassName={tileClassName}
             />
           </div>
-
-          {/* Upcoming Events Section */}
           <div className="mt-12 p-4 bg-white rounded-lg">
             <h3 className="text-[#03033B] font-medium mb-2">Upcoming Events</h3>
             <ul className="space-y-2 text-gray-800">
@@ -334,17 +324,25 @@ export default function BookingForm() {
           </div>
         </div>
       </div>
+
+      {/* Back to Category Button */}
+      <div className="max-w-6xl mx-auto mt-6 pb-6">
+        <button
+          onClick={navigateToBookNowPage}
+          className="bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-full text-sm"
+        >
+          ← Back to Category
+        </button>
+      </div>
     </div>
   );
 }
 
-// Add the custom CSS class for booked dates
 const style = document.createElement('style');
 style.innerHTML = `
 .booked-date {
   background-color: red !important;
   color: white !important;
-  
 }
 .booked-time {
   color: white !important;

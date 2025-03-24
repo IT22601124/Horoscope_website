@@ -16,7 +16,7 @@ const AboutUs = () => {
       <div className="flex justify-end mb-8">
         <button
           onClick={() => setShowLoginModal(true)} // Open the login modal
-          className="bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition duration-300 text-sm"
+          className="bg-white text-black px-4 py-2 rounded-lg hover:bg-amber-600 transition duration-300 text-sm"
         >
           Admin
         </button>
