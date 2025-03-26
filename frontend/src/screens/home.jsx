@@ -212,7 +212,7 @@ export default function Home() {
                   <Calendar className="w-5 h-5 mr-2" />
                   <h3 className="text-lg font-semibold">{notice.category}</h3>
                 </div>
-                <p className="text-black-700 ">{notice.description}</p>
+                <p className="text-black-700 ">{notice.title}</p>
                 <p className="text-gray-700">{notice.description}</p>
                 <div className="flex items-center text-gray-500 text-sm">
                   <Clock className="w-4 h-4 mr-1" />
