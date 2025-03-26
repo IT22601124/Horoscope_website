@@ -80,9 +80,9 @@ export default function Home() {
               className="text-3xl sm:text-5xl font-bold bg-gradient-to-r from-yellow-500 to-orange-600 bg-clip-text pb-6 sm:pb-5 text-transparent text-center"
             >
                <div style={{ paddingBottom: "10px" }}>
-                  සියලුම ජෝතීශ්‍ය කටයුතු
+                  සියලුම ජ්‍යොතිෂ කටයුතු
               </div>
-              <div>විශ්මිත පලාපල....</div>
+              <div>විශ්මිත පලාපල සමගින්..</div>
 
             </motion.h2>
           </div>
@@ -93,7 +93,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mb-4 sm:mb-6 text-sm sm:text-lg font-bold text-gray-800 text-center"
           >
-            ජෝතීශ්‍ය විද්‍යාශූරී - දිල්රුක්ශි ලියනගේ
+            ජ්‍යොතීර්විද්‍යාශූරී - දිල්රුක්ශි ලියනගේ
           </motion.p>
           <motion.a
             initial={{ scale: 0.8, opacity: 0 }}
