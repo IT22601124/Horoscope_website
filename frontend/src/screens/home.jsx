@@ -82,7 +82,7 @@ export default function Home() {
                <div style={{ paddingBottom: "10px" }}>
                   සියලුම ජෝතීශ්‍ය කටයුතු
               </div>
-              <div>විශ්මිත පලාපල....</div>
+              <div>විශ්මිත පලාපල සමගින්..</div>
 
             </motion.h2>
           </div>

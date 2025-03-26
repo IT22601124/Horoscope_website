@@ -35,7 +35,7 @@ const AboutUs = () => {
         {/* Logo Section (1/3 width) */}
         <div className="w-1/3 flex justify-center items-center">
           <img
-            src="/images/logoo.png"
+            src="/images/LOGO.png"
             alt="Dinetha Astrological Logo"
             className="h-50 w-90"
           />
