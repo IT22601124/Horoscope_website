@@ -17,10 +17,10 @@ const ContactUs = () => {
     // Send the email using EmailJS
     emailjs
       .sendForm(
-        "service_c555yqm", // Replace with your EmailJS service ID
-        "template_j1lbuca", // Replace with your EmailJS template ID
+        "service_xb6scxy", // Replace with your EmailJS service ID
+        "template_v7t1e1y", // Replace with your EmailJS template ID
         form.current, // Reference to the form
-        "Eb22VPuqVzceWGrB4" // Replace with your EmailJS public key
+        "PACI560wvpCY7r6Zc" // Replace with your EmailJS public key
       )
       .then(
         (result) => {

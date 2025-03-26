@@ -15,9 +15,9 @@ export default function AdvisorsFooter() {
           <div className="mb-6 md:mb-0">
             <div className="flex items-center mb-4">
               <img
-                src="/images/logoo.png"
+                src="/images/LOGO.png"
                 alt="Dinetha Astrology Logo"
-                className="w-62 h-32"
+                className="w-70 h-40"
               />
             </div>
 
@@ -75,7 +75,7 @@ export default function AdvisorsFooter() {
                 href="mailto:info@dinethaastrology.com"
                 className="text-[#1e1e1e] hover:text-[#008080]"
               >
-                dinethaastrology@gmail.com
+                dinethaastrological@gmail.com
               </a>
             </div>
 
@@ -83,12 +83,13 @@ export default function AdvisorsFooter() {
               <div className="flex items-center mb-1">
                 <Phone className="text-[#000000] mr-3 flex-shrink-0" />
                 <a href="tel:+940771325070" className="text-[#1e1e1e] hover:text-[#008080]">
-                  +94 (0) 77 132 5070
+                  +94 (0) 772279389
                 </a>
               </div>
               <div className="flex items-center ml-7">
                 <a href="tel:+940701325070" className="text-[#1e1e1e] hover:text-[#008080]">
-                  +94 (0) 70 132 5070
+                  +94 (0) 718515615
+
                 </a>
               </div>
             </div>

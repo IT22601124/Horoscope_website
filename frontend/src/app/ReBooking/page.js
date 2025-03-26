@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import AstrologyForm from '../Booking/page'; // Correct import path
+import BookNowPage from '../Category/page'; // Correct import path
 
 const Rebooking = () => {
   const navigate = useNavigate(); // Initialize useNavigate
@@ -22,7 +22,7 @@ const Rebooking = () => {
       </div>
 
       {/* Render the AstrologyForm component */}
-      <AstrologyForm />
+      <BookNowPage />
     </div>
   );
 };

@@ -48,7 +48,7 @@ function App() {
           <div className="nav-logo">
             <Link to="/">
               <img
-                src="/images/logoo.png"
+                src="/images/LOGO.png"
                 alt="Dinetha Astrology Logo"
                 className="logo-image"
               />

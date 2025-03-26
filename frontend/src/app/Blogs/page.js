@@ -37,21 +37,21 @@ export default function Blog() {
     },
     {
       id: 4,
-      title: "New Card 4",
+      title: "2025 වසර අතිශය තීරණාත්මකයි !!",
       description:
-        "Explore the mysteries of the universe with our advanced astrological tools.",
+        "මේ ලග්න හිමියෝ සුපිරි ධනපතියෝ වෙනවා! 2025 ගැන පුදුම හිතෙන අනාවැකි ටික.",
       icon: <Clock className="h-4 w-4" />,
       image: "/images/im4.png",
-      youtubeLink: "https://youtu.be/yywfqd4A62U?si=zra_-40RZMgR8FA3",
+      youtubeLink: "https://youtu.be/8aWQeBCKV-0?si=Y4llVIf0O1Sz50yR",
     },
     {
       id: 5,
-      title: "New Card 5",
+      title: "🔴 Every Morning ",
       description:
-        "Dive deeper into the cosmos with our exclusive astrological insights.",
+        "ජෝතීර් විද්‍යාශූරී දිල්රුක්ෂි ලියනගේ | 2025.01.10",
       icon: <Clock className="h-4 w-4" />,
       image: "/images/im5.png",
-      youtubeLink: "", // Add a YouTube link later
+      youtubeLink: "https://www.youtube.com/live/Iyr7J34rVfQ?si=R2-M8O2jaXIGyGls", // Add a YouTube link later
     },
     {
       id: 6,

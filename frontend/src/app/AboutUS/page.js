@@ -16,7 +16,7 @@ const AboutUs = () => {
       <div className="flex justify-end mb-8">
         <button
           onClick={() => setShowLoginModal(true)} // Open the login modal
-          className="bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition duration-300 text-sm"
+          className="bg-white text-black px-4 py-2 rounded-lg hover:bg-amber-600 transition duration-300 text-sm"
         >
           Admin
         </button>
@@ -35,7 +35,7 @@ const AboutUs = () => {
         {/* Logo Section (1/3 width) */}
         <div className="w-1/3 flex justify-center items-center">
           <img
-            src="/images/logoo.png"
+            src="/images/LOGO.png"
             alt="Dinetha Astrological Logo"
             className="h-50 w-90"
           />
