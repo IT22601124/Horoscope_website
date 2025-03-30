@@ -24,7 +24,7 @@ const AddNotice = () => {
   useEffect(() => {
     const fetchNotices = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/notices'); // Replace with your backend API endpoint
+        const response = await fetch('https://dinethaastrological.com/api/notices'); // Replace with your backend API endpoint
         if (!response.ok) {
           throw new Error('Failed to fetch notices');
         }
@@ -52,7 +52,7 @@ const AddNotice = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:5001/api/notices', {
+      const response = await fetch('https://dinethaastrological.com/api/notices', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ const AddNotice = () => {
   // Handle delete action
   const handleDelete = async (id, index) => {
     try {
-      const response = await fetch(`http://localhost:5001/api/notices/delete-notice/${id}`, {
+      const response = await fetch(`https://dinethaastrological.com/api/notices/delete-notice/${id}`, {
         method: 'DELETE',
       });
 

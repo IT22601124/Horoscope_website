@@ -21,7 +21,7 @@ export default function Home() {
     // Fetch notices from the API
     const fetchNotices = async () => {
       try {
-        const response = await fetch("http://localhost:5001/api/notices");
+        const response = await fetch("https://dinethaastrological.com/api/notices");
         if (response.ok) {
           const data = await response.json();
           setNotices(data); // Update state with fetched notices
@@ -93,7 +93,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mb-4 sm:mb-6 text-sm sm:text-lg font-bold text-gray-800 text-center"
           >
-            ජ්‍යොතීර්විද්‍යාශූරී - දිල්රුක්ශි ලියනගේ
+            ජ්‍යොතීර්විද්‍යාශූරී - දිල්රුක්ෂි ලියනගේ
           </motion.p>
           <motion.a
             initial={{ scale: 0.8, opacity: 0 }}

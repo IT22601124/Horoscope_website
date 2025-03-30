@@ -48,7 +48,7 @@ export default function BookingForm() {
         bookingDate: localDate.toISOString().split('T')[0],
       };
 
-      const response = await fetch('http://localhost:5001/api/user/add-user', {
+      const response = await fetch('https://dinethaastrological.com/api/user/add-user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,7 +59,8 @@ export default function BookingForm() {
       if (response.ok) {
         const data = await response.json();
         alert('Booking added successfully!');
-        window.location.reload();
+        navigate(`/book`);
+        
       } else {
         const errorData = await response.json();
         alert(`Error: ${errorData.error}`);
@@ -73,7 +74,7 @@ export default function BookingForm() {
   useEffect(() => {
     const fetchBookedDates = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/user/get-users');
+        const response = await fetch('https://dinethaastrological.com/api/user/get-users');
         if (response.ok) {
           const users = await response.json();
           const dates = users.map((user) => ({

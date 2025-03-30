@@ -8,7 +8,7 @@ const RegisterPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5001/api/auth/create-account", {
+      const response = await fetch("https://dinethaastrological.com/api/auth/create-account", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
